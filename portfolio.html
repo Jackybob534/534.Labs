@@ -1,0 +1,612 @@
+<!--
+$$$$$$$\   $$$$$$\  $$\   $$\ 
+$$  ____| $$ ___$$\ $$ |  $$ |
+$$ |      \_/   $$ |$$ |  $$ |
+$$$$$$$\    $$$$$ / $$$$$$$$ |
+\_____$$\   \___$$\ \_____$$ |
+$$\   $$ |$$\   $$ |      $$ |
+\$$$$$$  |\$$$$$$  |      $$ |
+ \______/  \______/       \__|                         
+
+© 2025 534 Labs
+
+Notice: All information contained herein is, and remains,
+the property of 534 Labs. The intellectual and technical concepts
+contained herein are proprietary to 534 Labs and are protected by
+all applicable intellectual property laws, including trade secret
+and copyright laws.
+Unauthorised dissemination, distribution, or reproduction of this
+material is strictly prohibited unless prior written permission
+is obtained from 534 Labs.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - 534 Labs</title>
+    <meta name="description" content="Explore 534 Labs' portfolio of successful gaming websites, Discord bots, and Roblox games for various communities.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="logo.png" type="image/png">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="534 Labs Logo" class="logo">
+                <span class="company-name">534 Labs</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="services.html" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="portfolio.html" class="nav-link active">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Portfolio</h1>
+            <p>Showcasing our best work across gaming communities and digital platforms</p>
+        </div>
+    </section>
+
+    <!-- Portfolio Stats -->
+    <section class="portfolio-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">ERLC Servers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Discord Bots</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Roblox Games</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Filter -->
+    <section class="portfolio-filter">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="erlc">ERLC Websites</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn" data-filter="discord">Discord Bots</button>
+                <button class="filter-btn" data-filter="roblox">Roblox Games</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section class="featured-projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            
+            <!-- ERLC Server Website -->
+            <div class="project-showcase erlc">
+                <div class="project-content">
+                    <div class="project-info">
+                        <div class="project-category">ERLC Server Website</div>
+                        <h3>Liberty County Central</h3>
+                        <p class="project-description">A comprehensive ERLC server website featuring real-time player statistics, staff management system, community forums, and integrated donation processing. The site serves over 1,000 active members with 99.9% uptime.</p>
+                        
+                        <div class="project-features">
+                            <h4>Key Features:</h4>
+                            <ul>
+                                <li>Real-time server statistics and player tracking</li>
+                                <li>Advanced admin dashboard with moderation tools</li>
+                                <li>Community forums with role-based permissions</li>
+                                <li>Integrated PayPal donation system</li>
+                                <li>Mobile-responsive design with dark mode</li>
+                                <li>Custom API integration for game data</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-results">
+                            <h4>Results:</h4>
+                            <div class="results-grid">
+                                <div class="result-item">
+                                    <span class="result-number">300%</span>
+                                    <span class="result-text">Increase in member engagement</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-number">50%</span>
+                                    <span class="result-text">Reduction in admin workload</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-number">1000+</span>
+                                    <span class="result-text">Active community members</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <h4>Technologies:</h4>
+                            <div class="tech-tags">
+                                <span class="tech-tag">HTML5/CSS3</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">PayPal API</span>
+                                <span class="tech-tag">Roblox API</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-preview">
+                        <div class="preview-container">
+                            <div class="preview-mockup">
+                                <div class="mockup-header">Liberty County Central</div>
+                                <div class="mockup-content erlc-preview">
+                                    <div class="preview-nav">Dashboard | Players | Staff | Donate</div>
+                                    <div class="preview-stats">
+                                        <div class="stat-box">🟢 Server Online | 45/64 Players</div>
+                                        <div class="stat-box">📊 Total Members: 1,247</div>
+                                        <div class="stat-box">💰 Monthly Goal: 75%</div>
+                                    </div>
+                                    <div class="preview-recent">Recent Activity</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Discord Bot -->
+            <div class="project-showcase discord">
+                <div class="project-content reverse">
+                    <div class="project-info">
+                        <div class="project-category">Discord Bot</div>
+                        <h3>ServerGuard Pro</h3>
+                        <p class="project-description">An advanced Discord moderation bot with AI-powered content filtering, automated punishment systems, and comprehensive server management tools. Currently protecting over 50 Discord servers with 24/7 uptime.</p>
+                        
+                        <div class="project-features">
+                            <h4>Key Features:</h4>
+                            <ul>
+                                <li>AI-powered auto-moderation with custom sensitivity settings</li>
+                                <li>Advanced logging and audit trail system</li>
+                                <li>Custom command builder with permissions</li>
+                                <li>Multi-server dashboard with real-time statistics</li>
+                                <li>Automated backup and restoration tools</li>
+                                <li>Integration with popular gaming APIs</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-results">
+                            <h4>Results:</h4>
+                            <div class="results-grid">
+                                <div class="result-item">
+                                    <span class="result-number">90%</span>
+                                    <span class="result-text">Reduction in manual moderation</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-number">50+</span>
+                                    <span class="result-text">Servers protected</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-number">100K+</span>
+                                    <span class="result-text">Messages processed daily</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <h4>Technologies:</h4>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Discord.js</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">Redis</span>
+                                <span class="tech-tag">Machine Learning</span>
+                                <span class="tech-tag">Docker</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-preview">
+                        <div class="preview-container">
+                            <div class="preview-mockup">
+                                <div class="mockup-header">ServerGuard Pro Dashboard</div>
+                                <div class="mockup-content discord-preview">
+                                    <div class="preview-commands">
+                                        <div class="command-line">!ban @user reason</div>
+                                        <div class="command-line">!warn @user message</div>
+                                        <div class="command-line">!stats server</div>
+                                        <div class="command-line">!automod toggle</div>
+                                    </div>
+                                    <div class="preview-status">
+                                        <div class="status-item">🟢 Auto-Mod: Active</div>
+                                        <div class="status-item">📊 Actions Today: 42</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Roblox Game -->
+            <div class="project-showcase roblox">
+                <div class="project-content">
+                    <div class="project-info">
+                        <div class="project-category">Roblox Game</div>
+                        <h3>Crypto Mining Tycoon</h3>
+                        <p class="project-description">A popular Roblox tycoon game featuring cryptocurrency mining mechanics, advanced economy systems, and social features. Achieving over 100K visits with strong player retention and monetization.</p>
+                        
+                        <div class="project-features">
+                            <h4>Key Features:</h4>
+                            <ul>
+                                <li>Complex economic simulation with multiple currencies</li>
+                                <li>Progressive unlock system with 50+ upgrades</li>
+                                <li>Social features including teams and leaderboards</li>
+                                <li>Premium game passes with exclusive content</li>
+                                <li>Anti-exploit protection and data security</li>
+                                <li>Regular content updates and seasonal events</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-results">
+                            <h4>Results:</h4>
+                            <div class="results-grid">
+                                <div class="result-item">
+                                    <span class="result-number">100K+</span>
+                                    <span class="result-text">Total game visits</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-number">85%</span>
+                                    <span class="result-text">Player retention rate</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-number">$5K+</span>
+                                    <span class="result-text">Monthly revenue generated</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <h4>Technologies:</h4>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Lua Scripting</span>
+                                <span class="tech-tag">Roblox Studio</span>
+                                <span class="tech-tag">DataStore2</span>
+                                <span class="tech-tag">ProfileService</span>
+                                <span class="tech-tag">ReplicatedStorage</span>
+                                <span class="tech-tag">Anti-Exploit</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-preview">
+                        <div class="preview-container">
+                            <div class="preview-mockup">
+                                <div class="mockup-header">Crypto Mining Tycoon</div>
+                                <div class="mockup-content roblox-preview">
+                                    <div class="preview-game-ui">
+                                        <div class="ui-element">💰 Coins: 1,247</div>
+                                        <div class="ui-element">⚡ Hash Rate: 50 GH/s</div>
+                                        <div class="ui-element">🏆 Rank: #15</div>
+                                    </div>
+                                    <div class="preview-buttons">
+                                        <div class="game-btn">Shop</div>
+                                        <div class="game-btn">Upgrades</div>
+                                        <div class="game-btn">Leaderboard</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section class="portfolio-grid">
+        <div class="container">
+            <h2 class="section-title">More Projects</h2>
+            
+            <div class="projects-grid">
+                <!-- ERLC Projects -->
+                <div class="portfolio-item erlc">
+                    <div class="portfolio-image">
+                        <div class="portfolio-mockup erlc-mock"></div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Pacific Coast RP</h3>
+                        <p>Professional ERLC server website with custom livery system and player statistics.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">ERLC Website</span>
+                            <span class="tag">Database Integration</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item web">
+                    <div class="portfolio-image">
+                        <div class="portfolio-mockup web-mock"></div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>GameHub Community</h3>
+                        <p>Modern gaming community website with forums, events, and member management.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Web Development</span>
+                            <span class="tag">Community Platform</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item discord">
+                    <div class="portfolio-image">
+                        <div class="portfolio-mockup discord-mock"></div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>EventBot Pro</h3>
+                        <p>Advanced Discord bot for event management with RSVP system and reminders.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Discord Bot</span>
+                            <span class="tag">Event Management</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item roblox">
+                    <div class="portfolio-image">
+                        <div class="portfolio-mockup roblox-mock"></div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Battle Arena</h3>
+                        <p>Competitive PvP Roblox game with ranking system and tournament features.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Roblox Game</span>
+                            <span class="tag">PvP System</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item erlc">
+                    <div class="portfolio-image">
+                        <div class="portfolio-mockup erlc-mock"></div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Metro State RP</h3>
+                        <p>Comprehensive ERLC server platform with CAD system and training modules.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">ERLC Website</span>
+                            <span class="tag">CAD Integration</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item web">
+                    <div class="portfolio-image">
+                        <div class="portfolio-mockup web-mock"></div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>TechStart Solutions</h3>
+                        <p>Corporate website for tech startup with portfolio showcase and client portal.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Business Website</span>
+                            <span class="tag">Client Portal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"534 Labs transformed our ERLC server with an amazing website. Player engagement increased by 300% and our admin workload decreased significantly. Highly recommended!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <strong>Mike Johnson</strong>
+                        <span>Owner, Liberty County Central</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The Discord bot they created for us is incredible. It handles moderation perfectly and the custom features are exactly what we needed. Worth every penny!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <strong>Sarah Chen</strong>
+                        <span>Community Manager, GameHub</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Our Roblox game became a hit thanks to 534 Labs. The scripting is flawless and the monetization strategy is generating great revenue. Professional team!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <strong>Alex Rivera</strong>
+                        <span>Game Developer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="portfolio-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Join Our Success Stories?</h2>
+                <p>Let's create something amazing together. Contact us to discuss your project and see how we can help you achieve your goals.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">Start Your Project</a>
+                    <a href="services.html" class="btn btn-secondary">View Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="534 Labs Logo" class="footer-logo">
+                    <p class="footer-slogan">Your Server, Our Technology</p>
+                    <div class="social-media">
+                        <a href="https://discord.gg/534labs" class="social-link" title="Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://twitter.com/534labs" class="social-link" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://github.com/534labs" class="social-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:contact@534labs.com" class="social-link" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="services.html#erlc">ERLC Websites</a></li>
+                            <li><a href="services.html#web">Web Development</a></li>
+                            <li><a href="services.html#discord">Discord Bots</a></li>
+                            <li><a href="services.html#roblox">Roblox Games</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="portfolio.html">Portfolio</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="index.html">Home</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 534 Labs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Portfolio filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const featuredProjects = document.querySelectorAll('.project-showcase');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                // Filter portfolio grid items
+                portfolioItems.forEach(item => {
+                    if (filter === 'all' || item.classList.contains(filter)) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+
+                // Filter featured projects
+                featuredProjects.forEach(project => {
+                    if (filter === 'all' || project.classList.contains(filter)) {
+                        project.style.display = 'block';
+                        setTimeout(() => {
+                            project.style.opacity = '1';
+                            project.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        project.style.opacity = '0';
+                        project.style.transform = 'translateY(-20px)';
+                        setTimeout(() => {
+                            project.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Animate portfolio items on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        portfolioItems.forEach(item => {
+            observer.observe(item);
+        });
+
+        featuredProjects.forEach(project => {
+            observer.observe(project);
+        });
+    </script>
+</body>
+</html>

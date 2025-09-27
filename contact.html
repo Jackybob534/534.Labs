@@ -1,0 +1,439 @@
+<!--
+$$$$$$$\   $$$$$$\  $$\   $$\ 
+$$  ____| $$ ___$$\ $$ |  $$ |
+$$ |      \_/   $$ |$$ |  $$ |
+$$$$$$$\    $$$$$ / $$$$$$$$ |
+\_____$$\   \___$$\ \_____$$ |
+$$\   $$ |$$\   $$ |      $$ |
+\$$$$$$  |\$$$$$$  |      $$ |
+ \______/  \______/       \__|                         
+
+© 2025 534 Labs
+
+Notice: All information contained herein is, and remains,
+the property of 534 Labs. The intellectual and technical concepts
+contained herein are proprietary to 534 Labs and are protected by
+all applicable intellectual property laws, including trade secret
+and copyright laws.
+Unauthorised dissemination, distribution, or reproduction of this
+material is strictly prohibited unless prior written permission
+is obtained from 534 Labs.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - 534 Labs</title>
+    <meta name="description" content="Get in touch with 534 Labs for your gaming and web development needs. Free quotes and 24/7 support available.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="logo.png" type="image/png">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="534 Labs Logo" class="logo">
+                <span class="company-name">534 Labs</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="services.html" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="portfolio.html" class="nav-link">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link active">Contact</a>
+                </li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>Ready to start your project? Get in touch with our team today</p>
+        </div>
+    </section>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="container">
+            <div class="contact-hero-content">
+                <div class="contact-intro">
+                    <h2>Let's Build Something Amazing Together</h2>
+                    <p>Whether you need a custom ERLC server website, a powerful Discord bot, an engaging Roblox game, or professional web development, our team is here to help bring your vision to life.</p>
+                    
+                    <div class="contact-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-icon">⚡</div>
+                            <div class="highlight-text">
+                                <h4>Quick Response</h4>
+                                <p>We respond to all inquiries within 24 hours</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">💰</div>
+                            <div class="highlight-text">
+                                <h4>Free Quotes</h4>
+                                <p>Get detailed project estimates at no cost</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">🎯</div>
+                            <div class="highlight-text">
+                                <h4>Custom Solutions</h4>
+                                <p>Tailored development for your specific needs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Methods -->
+    <section class="contact-methods">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="methods-grid">
+                <div class="method-card">
+                    <div class="method-icon">📧</div>
+                    <h3>Email</h3>
+                    <p>Send us a detailed message about your project</p>
+                    <a href="mailto:contact@example.com" class="method-link">contact@example.com</a>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">💬</div>
+                    <h3>Discord</h3>
+                    <p>Join our community server for quick support</p>
+                    <a href="#" class="method-link">discord.gg/example</a>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">🌐</div>
+                    <h3>Website</h3>
+                    <p>Visit our main website for more information</p>
+                    <a href="#" class="method-link">www.example.com</a>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">⏰</div>
+                    <h3>Support Hours</h3>
+                    <p>24/7 support for urgent matters</p>
+                    <span class="method-link">Always Available</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Contact Form -->
+    <section class="main-contact-form">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Start Your Project</h2>
+                    <p>Fill out the form below and we'll get back to you with a detailed quote and timeline</p>
+                </div>
+                
+                <form class="contact-form enhanced-form" id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="discord">Discord Username</label>
+                            <input type="text" id="discord" name="discord" placeholder="username#0000">
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Project Budget</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select Budget Range</option>
+                                <option value="under-500">Under $500</option>
+                                <option value="500-1000">$500 - $1,000</option>
+                                <option value="1000-2500">$1,000 - $2,500</option>
+                                <option value="2500-5000">$2,500 - $5,000</option>
+                                <option value="over-5000">$5,000+</option>
+                                <option value="discuss">Let's Discuss</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Primary Service *</label>
+                        <select id="service" name="service" required>
+                            <option value="">Select a Service</option>
+                            <option value="erlc">ERLC Server Website</option>
+                            <option value="web">Web Development</option>
+                            <option value="discord">Discord Bot</option>
+                            <option value="roblox">Roblox Game</option>
+                            <option value="multiple">Multiple Services</option>
+                            <option value="consultation">Consultation Only</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="timeline">Desired Timeline</label>
+                        <select id="timeline" name="timeline">
+                            <option value="">Select Timeline</option>
+                            <option value="asap">ASAP (Rush Order)</option>
+                            <option value="1-week">Within 1 Week</option>
+                            <option value="2-weeks">Within 2 Weeks</option>
+                            <option value="1-month">Within 1 Month</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="project-details">Project Details *</label>
+                        <textarea id="project-details" name="project-details" rows="6" placeholder="Please describe your project in detail. Include features you need, design preferences, target audience, and any specific requirements." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="additional-info">Additional Information</label>
+                        <textarea id="additional-info" name="additional-info" rows="4" placeholder="Any additional details, questions, or special requirements?"></textarea>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="newsletter" value="yes">
+                            <span class="checkmark"></span>
+                            Subscribe to our newsletter for updates and gaming industry insights
+                        </label>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="terms" required>
+                            <span class="checkmark"></span>
+                            I agree to the terms of service and privacy policy *
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary form-submit">
+                        <span class="button-text">Send Message</span>
+                        <span class="button-loading">Sending...</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="contact-faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>How long does a typical project take?</h3>
+                    <p>Project timelines vary based on complexity. Simple Discord bots can be completed in 3-5 days, while comprehensive ERLC websites may take 2-3 weeks. We'll provide a detailed timeline with your quote.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Do you provide ongoing support?</h3>
+                    <p>Yes! All projects include 30 days of free support. We also offer maintenance packages for long-term support, updates, and feature additions.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>What's included in the project cost?</h3>
+                    <p>Our quotes include development, testing, deployment, documentation, and initial support. Hosting and third-party services are typically separate unless specified.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Can you work with existing systems?</h3>
+                    <p>Absolutely! We can integrate with existing websites, databases, Discord servers, and game systems. We'll assess compatibility during consultation.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Do you offer custom payment plans?</h3>
+                    <p>Yes, we offer flexible payment options including milestone-based payments for larger projects. Contact us to discuss payment arrangements that work for you.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>What if I need changes after completion?</h3>
+                    <p>Minor changes are included in our support period. Larger modifications can be handled through our maintenance packages or as separate projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Quote Section -->
+    <section class="quick-quote">
+        <div class="container">
+            <div class="quote-content">
+                <h2>Need a Quick Estimate?</h2>
+                <p>Get an instant ballpark estimate for common projects</p>
+                
+                <div class="quick-quotes-grid">
+                    <div class="quick-quote-item">
+                        <h3>Basic ERLC Website</h3>
+                        <div class="quote-price">Starting at $299</div>
+                        <ul>
+                            <li>Player dashboard</li>
+                            <li>Server statistics</li>
+                            <li>Basic admin panel</li>
+                            <li>Mobile responsive</li>
+                        </ul>
+                        <a href="#contactForm" class="btn btn-primary">Get Detailed Quote</a>
+                    </div>
+                    
+                    <div class="quick-quote-item">
+                        <h3>Discord Bot</h3>
+                        <div class="quote-price">Starting at $149</div>
+                        <ul>
+                            <li>Custom commands</li>
+                            <li>Moderation features</li>
+                            <li>Database integration</li>
+                            <li>Basic hosting</li>
+                        </ul>
+                        <a href="#contactForm" class="btn btn-primary">Get Detailed Quote</a>
+                    </div>
+                    
+                    <div class="quick-quote-item">
+                        <h3>Roblox Game</h3>
+                        <div class="quote-price">Starting at $399</div>
+                        <ul>
+                            <li>Custom scripting</li>
+                            <li>UI/UX design</li>
+                            <li>Basic monetization</li>
+                            <li>Anti-exploit measures</li>
+                        </ul>
+                        <a href="#contactForm" class="btn btn-primary">Get Detailed Quote</a>
+                    </div>
+                </div>
+                
+                <p class="quote-disclaimer">*Prices shown are starting estimates. Final costs depend on specific requirements and complexity.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="534 Labs Logo" class="footer-logo">
+                    <p class="footer-slogan">Your Server, Our Technology</p>
+                    <div class="social-media">
+                        <a href="https://discord.gg/534labs" class="social-link" title="Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://twitter.com/534labs" class="social-link" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://github.com/534labs" class="social-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:contact@534labs.com" class="social-link" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="services.html#erlc">ERLC Websites</a></li>
+                            <li><a href="services.html#web">Web Development</a></li>
+                            <li><a href="services.html#discord">Discord Bots</a></li>
+                            <li><a href="services.html#roblox">Roblox Games</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="portfolio.html">Portfolio</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="index.html">Home</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 534 Labs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Enhanced contact form handling
+        const contactForm = document.getElementById('contactForm');
+        const submitButton = contactForm.querySelector('.form-submit');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            submitButton.classList.add('loading');
+            
+            // Simulate form submission (replace with actual submission logic)
+            setTimeout(() => {
+                submitButton.classList.remove('loading');
+                alert('Thank you for your message! We will get back to you within 24 hours with a detailed response.');
+                this.reset();
+            }, 2000);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form validation enhancements
+        const inputs = contactForm.querySelectorAll('input[required], select[required], textarea[required]');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.value.trim() === '') {
+                    this.classList.add('error');
+                } else {
+                    this.classList.remove('error');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
