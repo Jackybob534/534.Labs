@@ -1,27 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Order Status</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Status - 534 Labs</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <section class="order-tracker">
-    <div class="container">
-      <h2>Your Order Status</h2>
-      <div class="tracker-grid">
-        <!-- tracker items -->
-        <div class="tracker-item" id="step1">
-          <div class="tracker-number">01</div>
-          <h3>Order Placed</h3>
-          <p class="tracker-message">Your order has been received.</p>
-          <p class="tracker-developer"></p>
-        </div>
-        <!-- Repeat steps 2-5 as shown earlier -->
-      </div>
-    </div>
-  </section>
 
-  <script src="js/order-tracker.js"></script>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="534 Labs Logo" class="logo">
+                <span class="company-name">534 Labs</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="orders.html" class="nav-link active">Order Status</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1>Check Your Order Status</h1>
+            <p>Enter your order ID below to see the current status of your order.</p>
+        </div>
+    </header>
+
+    <!-- Order Status Form -->
+    <section class="order-status container">
+        <form class="enhanced-form">
+            <div class="form-group">
+                <label for="order-id">Order ID</label>
+                <input type="text" id="order-id" placeholder="Enter your Order ID">
+            </div>
+            <div class="form-submit">
+                <button type="submit" class="btn btn-primary">Check Status</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Status Result -->
+    <section class="status-result container" style="display:none;">
+        <div class="status-card">
+            <h2>Order ID: <span id="display-order-id"></span></h2>
+            <p>Status: <span id="order-status-text"></span></p>
+            <p>Estimated Delivery: <span id="delivery-date"></span></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>© 2025 534 Labs. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const form = document.querySelector('.enhanced-form');
+        const resultSection = document.querySelector('.status-result');
+        const displayOrderId = document.getElementById('display-order-id');
+        const orderStatusText = document.getElementById('order-status-text');
+        const deliveryDate = document.getElementById('delivery-date');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const orderId = document.getElementById('order-id').value.trim();
+            if (!orderId) return alert('Please enter a valid Order ID.');
+
+            // Simulate order status (replace with actual API)
+            const statuses = ["Processing", "Shipped", "Delivered", "Cancelled"];
+            const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+            const estimatedDelivery = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString();
+
+            displayOrderId.textContent = orderId;
+            orderStatusText.textContent = randomStatus;
+            deliveryDate.textContent = estimatedDelivery;
+
+            resultSection.style.display = "block";
+        });
+    </script>
+
 </body>
 </html>
