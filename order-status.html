@@ -1,54 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order Status</title>
-<style>
-    body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
-    .container { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; }
-    h1 { color: #007BFF; }
-    .status { font-size: 1.2em; margin-top: 10px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        #status {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            white-space: pre-line;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <h1>Order Status</h1>
-    <p id="order-number"></p>
-    <p id="status" class="status"></p>
-</div>
+    <div id="container">
+        <h1>Order Status</h1>
+        <div id="status">Loading...</div>
+    </div>
 
-<script>
-// Get order code from URL query string
-const params = new URLSearchParams(window.location.search);
-const orderCode = params.get('order');
+    <script>
+        async function showOrderStatus() {
+            const params = new URLSearchParams(window.location.search);
+            const orderNumber = params.keys().next().value; // get first query key
 
-const orderNumberEl = document.getElementById('order-number');
-const statusEl = document.getElementById('status');
+            const statusDiv = document.getElementById("status");
 
-if (!orderCode) {
-    orderNumberEl.textContent = "No order number provided.";
-    statusEl.textContent = "";
-} else {
-    orderNumberEl.textContent = `Order Code: ${orderCode}`;
+            if (!orderNumber) {
+                statusDiv.innerText = "No order number provided.";
+                return;
+            }
 
-    // Fetch orders.json from GitHub
-    fetch('https://jackybob534.github.io/534.Labs/orders.json')
-    .then(res => res.json())
-    .then(orders => {
-        if (!orders[orderCode]) {
-            statusEl.textContent = "Order not found!";
-            return;
+            try {
+                const res = await fetch('orders.json');
+                if (!res.ok) throw new Error("Failed to fetch orders.json");
+
+                const orders = await res.json();
+
+                if (!(orderNumber in orders)) {
+                    statusDiv.innerText = "Order not found!";
+                    return;
+                }
+
+                const order = orders[orderNumber];
+                const dots = "•".repeat(order.status);
+                statusDiv.innerText = `Order: ${orderNumber}\nItem: ${order.item}\nStatus: ${dots} (${order.status})`;
+
+            } catch (e) {
+                console.error(e);
+                statusDiv.innerText = "Failed to load order data.";
+            }
         }
-        const order = orders[orderCode];
-        const dots = '•'.repeat(order.status || 0);
-        statusEl.textContent = `Item: ${order.item}\nStatus: ${dots} (${order.status})`;
-    })
-    .catch(err => {
-        console.error(err);
-        statusEl.textContent = "Failed to load order data.";
-    });
-}
-</script>
+
+        showOrderStatus();
+    </script>
 </body>
 </html>
