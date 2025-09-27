@@ -2427,3 +2427,21 @@ section:nth-child(odd) {
   background: linear-gradient(to right, #1e90ff 25%, #ccc 25%);
 }
 
+ .progress-line,
+.progress-fill {
+  position: absolute;
+  height: 6px;
+  border-radius: 6px;
+  top: auto;
+  bottom: 22px; /* place line just under circles */
+  transform: none; /* remove translateY */
+}
+.progress-line {
+  background: var(--muted);
+  z-index: 0;
+}
+.progress-fill {
+  background: linear-gradient(90deg, var(--primary), #0056b3);
+  z-index: 1;
+  transition: width .6s cubic-bezier(.2,.9,.2,1), left .3s ease;
+}
