@@ -27,26 +27,13 @@
     <!-- Page Header -->
     <header class="page-header">
         <div class="container">
-            <h1>Check Your Order Status</h1>
-            <p>Enter your order ID below to see the current status of your order.</p>
+            <h1>Order Status</h1>
+            <p>Your order status is displayed below.</p>
         </div>
     </header>
 
-    <!-- Order Status Form -->
-    <section class="order-status container">
-        <form class="enhanced-form">
-            <div class="form-group">
-                <label for="order-id">Order ID</label>
-                <input type="text" id="order-id" placeholder="Enter your Order ID">
-            </div>
-            <div class="form-submit">
-                <button type="submit" class="btn btn-primary">Check Status</button>
-            </div>
-        </form>
-    </section>
-
     <!-- Status Result -->
-    <section class="status-result container" style="display:none;">
+    <section class="status-result container">
         <div class="status-card">
             <h2>Order ID: <span id="display-order-id"></span></h2>
             <p>Status: <span id="order-status-text"></span></p>
@@ -62,28 +49,32 @@
     </footer>
 
     <script>
-        const form = document.querySelector('.enhanced-form');
-        const resultSection = document.querySelector('.status-result');
+        // Function to get URL query parameters
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        const orderId = getQueryParam('order'); // Grab order ID from URL
         const displayOrderId = document.getElementById('display-order-id');
         const orderStatusText = document.getElementById('order-status-text');
         const deliveryDate = document.getElementById('delivery-date');
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const orderId = document.getElementById('order-id').value.trim();
-            if (!orderId) return alert('Please enter a valid Order ID.');
+        if (!orderId) {
+            displayOrderId.textContent = 'Not provided';
+            orderStatusText.textContent = 'N/A';
+            deliveryDate.textContent = 'N/A';
+        } else {
+            displayOrderId.textContent = orderId;
 
-            // Simulate order status (replace with actual API)
+            // Simulate status (replace with real API call)
             const statuses = ["Processing", "Shipped", "Delivered", "Cancelled"];
             const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
             const estimatedDelivery = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString();
 
-            displayOrderId.textContent = orderId;
             orderStatusText.textContent = randomStatus;
             deliveryDate.textContent = estimatedDelivery;
-
-            resultSection.style.display = "block";
-        });
+        }
     </script>
 
 </body>
