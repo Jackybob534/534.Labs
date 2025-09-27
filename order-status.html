@@ -184,75 +184,83 @@
   </footer>
 
   <script>
-    async function showOrderStatus() {
-      const params = new URLSearchParams(window.location.search);
-      const orderNumber = params.keys().next().value;
+  async function showOrderStatus() {
+    const params = new URLSearchParams(window.location.search);
+    const orderNumber = params.keys().next().value;
 
-      const orderInfo = document.getElementById("order-info");
-      const progressContainer = document.querySelector(".progress-container");
-      const fill = document.getElementById("progress-fill");
+    const orderInfo = document.getElementById("order-info");
+    const progressContainer = document.querySelector(".progress-container");
+    const fill = document.getElementById("progress-fill");
 
-      if (!orderNumber) {
-        orderInfo.innerText = "No order number provided.";
+    if (!orderNumber) {
+      orderInfo.innerText = "No order number provided.";
+      return;
+    }
+
+    try {
+      const res = await fetch("orders.json");
+      if (!res.ok) throw new Error("Failed to fetch orders.json");
+
+      const orders = await res.json();
+
+      if (!(orderNumber in orders)) {
+        orderInfo.innerText = "Order not found!";
         return;
       }
 
-      try {
-        const res = await fetch("orders.json");
-        if (!res.ok) throw new Error("Failed to fetch orders.json");
+      const order = orders[orderNumber];
+      orderInfo.innerHTML = `<h2>${orderNumber}</h2><p>Item: ${order.item}</p>`;
 
-        const orders = await res.json();
+      const steps = [
+        { id: 1, title: "Developer Assigned", desc: "A developer has been assigned to your order." },
+        { id: 2, title: "Work Started", desc: "Development work on your project has begun." },
+        { id: 3, title: "In Review", desc: "Your order is being reviewed and polished." },
+        { id: 4, title: "Deployment", desc: "Final product is being deployed and tested." },
+        { id: 5, title: "Completed", desc: "Your order has been delivered successfully." }
+      ];
 
-        if (!(orderNumber in orders)) {
-          orderInfo.innerText = "Order not found!";
-          return;
+      // clear any old steps if reloaded
+      document.querySelectorAll(".progress-step").forEach(el => el.remove());
+
+      // build steps
+      steps.forEach(step => {
+        const stepEl = document.createElement("div");
+        stepEl.classList.add("progress-step");
+
+        const circle = document.createElement("div");
+        circle.classList.add("circle");
+        if (order.status >= step.id) {
+          circle.classList.add("active");
         }
+        circle.textContent = step.id;
 
-        const order = orders[orderNumber];
-        orderInfo.innerHTML = `<h2>${orderNumber}</h2><p>Item: ${order.item}</p>`;
+        const title = document.createElement("h3");
+        title.textContent = step.title;
 
-        const steps = [
-          { id: 1, title: "Developer Assigned", desc: "A developer has been assigned to your order." },
-          { id: 2, title: "Work Started", desc: "Development work on your project has begun." },
-          { id: 3, title: "In Review", desc: "Your order is being reviewed and polished." },
-          { id: 4, title: "Deployment", desc: "Final product is being deployed and tested." },
-          { id: 5, title: "Completed", desc: "Your order has been delivered successfully." }
-        ];
+        const desc = document.createElement("p");
+        desc.textContent = step.desc;
 
-        // build steps
-        steps.forEach(step => {
-          const stepEl = document.createElement("div");
-          stepEl.classList.add("progress-step");
+        stepEl.appendChild(circle);
+        stepEl.appendChild(title);
+        stepEl.appendChild(desc);
 
-          const circle = document.createElement("div");
-          circle.classList.add("circle");
-          if (order.status >= step.id) circle.classList.add("active");
-          circle.textContent = step.id;
+        progressContainer.appendChild(stepEl);
+      });
 
-          const title = document.createElement("h3");
-          title.textContent = step.title;
-
-          const desc = document.createElement("p");
-          desc.textContent = step.desc;
-
-          stepEl.appendChild(circle);
-          stepEl.appendChild(title);
-          stepEl.appendChild(desc);
-
-          progressContainer.appendChild(stepEl);
-        });
-
-        // animate line fill to current step
-        const progressPercent = ((order.status - 1) / (steps.length - 1)) * 100;
-        fill.style.width = progressPercent + "%";
-
-      } catch (e) {
-        console.error(e);
-        orderInfo.innerText = "Failed to load order data.";
+      // animate line fill to current step
+      let progressPercent = 0;
+      if (order.status > 0) {
+        progressPercent = ((order.status - 1) / (steps.length - 1)) * 100;
       }
-    }
+      fill.style.width = progressPercent + "%";
 
-    showOrderStatus();
-  </script>
+    } catch (e) {
+      console.error(e);
+      orderInfo.innerText = "Failed to load order data.";
+    }
+  }
+
+  showOrderStatus();
+</script>
 </body>
 </html>
