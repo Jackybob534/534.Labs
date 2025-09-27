@@ -18,7 +18,7 @@
     /* Hero/Header */
     .page-header {
       text-align: center;
-      padding: 6rem 2rem; /* bigger hero */
+      padding: 6rem 2rem;
       background-color: #007BFF;
       color: #fff;
     }
@@ -90,7 +90,7 @@
       transition: background 0.5s ease;
     }
 
-    .active {
+    .circle.active {
       background: #007BFF;
     }
 
@@ -137,9 +137,10 @@
 
   <div id="status-container">
     <div id="order-info" style="text-align:center; margin-bottom:2rem;">Loading...</div>
-    <div class="progress-container">
+    <div class="progress-container" id="progress-container">
       <div class="progress-line"></div>
       <div class="progress-fill" id="progress-fill"></div>
+      <!-- Steps will be inserted here -->
     </div>
   </div>
 
@@ -189,7 +190,7 @@
     const orderNumber = params.keys().next().value;
 
     const orderInfo = document.getElementById("order-info");
-    const progressContainer = document.querySelector(".progress-container");
+    const progressContainer = document.getElementById("progress-container");
     const fill = document.getElementById("progress-fill");
 
     if (!orderNumber) {
@@ -219,7 +220,7 @@
         { id: 5, title: "Completed", desc: "Your order has been delivered successfully." }
       ];
 
-      // clear any old steps if reloaded
+      // remove old steps but keep line + fill
       document.querySelectorAll(".progress-step").forEach(el => el.remove());
 
       // build steps
@@ -247,10 +248,11 @@
         progressContainer.appendChild(stepEl);
       });
 
-      // animate line fill to current step
+      // calculate fill width
+      const totalSteps = steps.length;
       let progressPercent = 0;
       if (order.status > 0) {
-        progressPercent = ((order.status - 1) / (steps.length - 1)) * 100;
+        progressPercent = ((order.status - 1) / (totalSteps - 1)) * 100;
       }
       fill.style.width = progressPercent + "%";
 
@@ -261,6 +263,6 @@
   }
 
   showOrderStatus();
-</script>
+  </script>
 </body>
 </html>
