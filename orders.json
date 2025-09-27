@@ -6,9 +6,5 @@
     "ABC-987654321": {
         "status": 2,
         "item": "Another Product"
-    },
-    "1": {
-        "status": 1,
-        "item": "1"
     }
 }
