@@ -2423,30 +2423,33 @@ section:nth-child(odd) {
 }
 
 .progress-container {
-  position: relative;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin: 3rem 0;
-  padding: 0 40px; /* ensures line matches circles, tweak if needed */
+  align-items: flex-start; /* move circles to top of container */
+  position: relative;
+  margin: 4rem 0;
+  padding-top: 50px; /* extra space so line sits below circles */
 }
 
-.progress-line,
-.progress-fill {
-  position: absolute;
-  height: 8px;
-  border-radius: 8px;
-  bottom: 15px; /* lowers line below circles */
-  left: 0;
-}
 .progress-line {
-  width: 100%;
+  position: absolute;
+  top: 60px; /* lower than circle center */
+  left: 35px; /* half circle width to align with left edge of first circle */
+  right: 35px; /* half circle width for right edge */
+  height: 6px; /* make line thicker */
   background: #e0e0e0;
   z-index: 0;
 }
+
 .progress-fill {
-  background: linear-gradient(90deg, #007BFF, #0056b3);
+  position: absolute;
+  top: 60px; /* same as progress-line */
+  left: 35px;
+  height: 6px;
+  background: #007BFF;
   z-index: 1;
   width: 0;
-  transition: width 0.6s ease-in-out;
+  transition: width 1s ease-in-out;
 }
+
+
