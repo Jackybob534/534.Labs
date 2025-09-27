@@ -2379,21 +2379,51 @@ section:nth-child(odd) {
         grid-template-columns: 1fr;
     }
 
-}
-.custom-dot {
-    list-style: none;
-    position: relative;
-    padding-left: 1.5rem;
-    color: var(--text-light);
+.order-status {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin: 40px 20px;
 }
 
-.custom-dot::before {
-    content: '•'; /* Use '•' for dots or '✓' for checkmarks */
-    color: var(--primary-color);
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-    font-size: 1.2rem;
-    top: 0;
-    line-height: 1;
+.step {
+  position: relative;
+  text-align: center;
+  flex: 1;
+  z-index: 1;
+  color: #aaa; /* light grey for incomplete steps */
 }
+
+.step::before {
+  content: '';
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0 auto 8px;
+  border-radius: 50%;
+  background-color: #eee; /* default grey */
+  border: 2px solid #ccc; /* subtle outline for contrast */
+}
+
+.step.completed::before {
+  background-color: #1e90ff; /* company blue */
+  border-color: #1e90ff;
+}
+
+/* connecting line */
+.order-status::after {
+  content: '';
+  position: absolute;
+  top: 8px; /* half of dot height */
+  left: 8px; /* start from the first dot center */
+  right: 8px; /* end at last dot center */
+  height: 2px;
+  background: linear-gradient(to right, #1e90ff 0%, #1e90ff 50%, #ccc 50%, #ccc 100%);
+  z-index: 0;
+}
+
+/* adjust gradient dynamically based on completed steps */
+.step:nth-child(1).completed ~ .step:nth-child(2)::before ~ .order-status::after {
+  background: linear-gradient(to right, #1e90ff 25%, #ccc 25%);
+}
+
