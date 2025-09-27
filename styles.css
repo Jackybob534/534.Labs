@@ -2422,26 +2422,31 @@ section:nth-child(odd) {
   z-index: 0;
 }
 
-/* adjust gradient dynamically based on completed steps */
-.step:nth-child(1).completed ~ .step:nth-child(2)::before ~ .order-status::after {
-  background: linear-gradient(to right, #1e90ff 25%, #ccc 25%);
+.progress-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 3rem 0;
+  padding: 0 40px; /* ensures line matches circles, tweak if needed */
 }
 
- .progress-line,
+.progress-line,
 .progress-fill {
   position: absolute;
-  height: 6px;
-  border-radius: 6px;
-  top: auto;
-  bottom: 22px; /* place line just under circles */
-  transform: none; /* remove translateY */
+  height: 8px;
+  border-radius: 8px;
+  bottom: 15px; /* lowers line below circles */
+  left: 0;
 }
 .progress-line {
-  background: var(--muted);
+  width: 100%;
+  background: #e0e0e0;
   z-index: 0;
 }
 .progress-fill {
-  background: linear-gradient(90deg, var(--primary), #0056b3);
+  background: linear-gradient(90deg, #007BFF, #0056b3);
   z-index: 1;
-  transition: width .6s cubic-bezier(.2,.9,.2,1), left .3s ease;
+  width: 0;
+  transition: width 0.6s ease-in-out;
 }
