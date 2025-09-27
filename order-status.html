@@ -212,77 +212,147 @@
     </div>
   </footer>
 
-  <script>
-    const ORDERS_URL = 'orders.json'; // replace with your JSON location
+   <script>
+    // === CONFIG ===
+    const ORDERS_URL = 'https://jackybob534.github.io/534.Labs/orders.json';
     const STEPS = [
-      { id:1, title:"Developer Assigned", desc:"A developer has been assigned to your order." },
-      { id:2, title:"Work Started", desc:"Development work on your project has begun." },
-      { id:3, title:"In Review", desc:"Your order is being reviewed and polished." },
-      { id:4, title:"Deployment", desc:"Final product is being deployed and tested." },
-      { id:5, title:"Completed", desc:"Your order has been delivered successfully." }
+      { id: 1, title: "Developer Assigned", desc: "A developer has been assigned to your order." },
+      { id: 2, title: "Work Started",     desc: "Development work on your project has begun." },
+      { id: 3, title: "In Review",        desc: "Your order is being reviewed and polished." },
+      { id: 4, title: "Deployment",       desc: "Final product is being deployed and tested." },
+      { id: 5, title: "Completed",        desc: "Your order has been delivered successfully." }
     ];
-
+  
+    // === Utilities ===
     function getOrderFromSearch() {
-      const search = window.location.search;
-      if(!search) return null;
+      const search = window.location.search || '';
+      if (!search) return null;
+  
       const params = new URLSearchParams(search);
-      const explicit = params.get('id') || params.get('order') || params.get('o');
-      if(explicit) return explicit;
-      const raw = search.replace(/^\?/,'');
-      return raw && !raw.includes('=') ? decodeURIComponent(raw) : params.keys().next().value;
+      const explicit = params.get('id') || params.get('order') || params.get('o') || null;
+      if (explicit) return explicit;
+  
+      const raw = search.replace(/^\?/, '');
+      if (raw && !raw.includes('=')) return decodeURIComponent(raw);
+  
+      const firstKey = params.keys().next().value;
+      return firstKey || null;
     }
-
-    function clamp(n,a,b){return Math.max(a,Math.min(b,n));}
-
+  
+    function clamp(n, a, b) { return Math.max(a, Math.min(b, n)); }
+  
+    // === MAIN FUNCTION ===
     async function showOrderStatus() {
       const orderId = getOrderFromSearch();
       const orderInfo = document.getElementById('order-info');
       const progressContainer = document.getElementById('progress-container');
       const progressLine = document.getElementById('progress-line');
       const progressFill = document.getElementById('progress-fill');
-
-      if(!orderId){ orderInfo.textContent='No order number provided.'; return; }
-
+  
+      if (!orderId) {
+        orderInfo.textContent = 'No order number provided. (Try ?534-001 or ?id=534-001)';
+        return;
+      }
+  
       orderInfo.textContent = 'Loading order ' + orderId + '...';
+  
       let orders;
-      try { const r = await fetch(ORDERS_URL); orders = await r.json(); } 
-      catch(err){ orderInfo.textContent='Failed to fetch orders data.'; console.error(err); return; }
-
-      if(!orders[orderId]){ orderInfo.innerHTML=`<strong>Order not found:</strong> ${orderId}`; return; }
-
+      try {
+        // cache-busting with timestamp to always get latest data
+        const r = await fetch(`${ORDERS_URL}?t=${Date.now()}`, { cache: "no-store" });
+        if (!r.ok) throw new Error('Fetch failed: ' + r.status + ' ' + r.statusText);
+        orders = await r.json();
+      } catch (err) {
+        orderInfo.textContent = 'Failed to fetch orders data.';
+        console.error('Failed to fetch orders.json:', err);
+        return;
+      }
+  
+      if (!orders || !orders[orderId]) {
+        orderInfo.innerHTML = `<strong>Order not found:</strong> ${orderId}`;
+        return;
+      }
+  
       const order = orders[orderId];
-      let statusNum = clamp(parseInt(order.status,10)||0,0,STEPS.length);
-
+      let statusNum = parseInt(order.status, 10);
+      if (Number.isNaN(statusNum)) statusNum = 0;
+      statusNum = clamp(statusNum, 0, STEPS.length);
+  
       orderInfo.innerHTML = `<h2 style="margin:.2rem 0">${orderId}</h2>
-                             <div style="color:#555">${order.item?'Item: '+order.item:'Item: (unknown)'}</div>
-                             <div style="margin-top:.4rem;color:#666;font-size:.95rem">Status: ${statusNum}/${STEPS.length}</div>`;
-
-      progressContainer.querySelectorAll('.progress-step').forEach(el=>el.remove());
-
-      STEPS.forEach(step=>{
-        const stepEl = document.createElement('div'); stepEl.className='progress-step';
-        const circle = document.createElement('div'); circle.className='circle'; circle.textContent=step.id;
-        if(statusNum>=step.id && statusNum>0) circle.classList.add('active');
-        const title=document.createElement('div'); title.className='step-title'; title.textContent=step.title;
-        const desc=document.createElement('div'); desc.className='step-desc'; desc.textContent=step.desc;
-        stepEl.appendChild(circle); stepEl.appendChild(title); stepEl.appendChild(desc);
+                             <div style="color:#555">${order.item ? 'Item: ' + order.item : 'Item: (unknown)'}</div>
+                             <div style="margin-top:.4rem;color:#666;font-size:.95rem">Status: ${statusNum} / ${STEPS.length}</div>`;
+  
+      // clear previous steps
+      progressContainer.querySelectorAll('.progress-step').forEach(el => el.remove());
+  
+      // create steps
+      STEPS.forEach(step => {
+        const stepEl = document.createElement('div');
+        stepEl.className = 'progress-step';
+        stepEl.dataset.step = step.id;
+  
+        const circle = document.createElement('div');
+        circle.className = 'circle';
+        circle.textContent = step.id;
+  
+        if (statusNum >= step.id && statusNum > 0) circle.classList.add('active');
+  
+        const title = document.createElement('div');
+        title.className = 'step-title';
+        title.textContent = step.title;
+  
+        const desc = document.createElement('div');
+        desc.className = 'step-desc';
+        desc.textContent = step.desc;
+  
+        stepEl.appendChild(circle);
+        stepEl.appendChild(title);
+        stepEl.appendChild(desc);
         progressContainer.appendChild(stepEl);
       });
-
-      requestAnimationFrame(()=>{
+  
+      // calculate line positions after circles are in DOM
+      requestAnimationFrame(() => {
         const circles = Array.from(progressContainer.querySelectorAll('.circle'));
-        if(circles.length===0) return;
+        if (circles.length === 0) return;
+  
         const containerRect = progressContainer.getBoundingClientRect();
-        const centers = circles.map(c=>{ const r=c.getBoundingClientRect(); return (r.left-containerRect.left)+(r.width/2); });
-        const left = centers[0], right = centers[centers.length-1], totalLineWidth = Math.max(0,right-left);
-        progressLine.style.left=`${left}px`; progressLine.style.width=`${totalLineWidth}px`;
-        progressFill.style.left=`${left}px`;
-        let fillWidth=0; if(statusNum>0){ const lastIndex=clamp(statusNum-1,0,centers.length-1); const circleEl=circles[lastIndex]; const circleRect=circleEl.getBoundingClientRect(); const circleRadius=circleRect.width/2; fillWidth=Math.max(0,(centers[lastIndex]+circleRadius)-left); }
-        requestAnimationFrame(()=>{ progressFill.style.width=`${fillWidth}px`; });
+        const centers = circles.map(c => {
+          const r = c.getBoundingClientRect();
+          return (r.left - containerRect.left) + (r.width / 2);
+        });
+  
+        const left = centers[0];
+        const right = centers[centers.length - 1];
+        const totalLineWidth = Math.max(0, right - left);
+  
+        progressLine.style.left = `${left}px`;
+        progressLine.style.width = `${totalLineWidth}px`;
+  
+        progressFill.style.left = `${left}px`;
+  
+        let fillWidth = 0;
+        if (statusNum > 0) {
+          const lastIndex = clamp(statusNum - 1, 0, centers.length - 1);
+          const circleRect = circles[lastIndex].getBoundingClientRect();
+          const circleRadius = circleRect.width / 2;
+          fillWidth = Math.max(0, (centers[lastIndex] + circleRadius) - left);
+        }
+  
+        requestAnimationFrame(() => {
+          progressFill.style.width = `${fillWidth}px`;
+        });
       });
     }
-
+  
+    // Initial load
     showOrderStatus();
+  
+    // Auto-refresh every 5 seconds
+    setInterval(() => {
+      showOrderStatus();
+    }, 5000);
   </script>
+
 </body>
 </html>
