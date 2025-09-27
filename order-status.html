@@ -4,120 +4,178 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order Status - 534 Labs</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" href="logo.png" type="image/png">
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f9f9f9;
+      background-color: #f9f9f9;
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
     }
 
-    #container {
-      max-width: 1100px;
-      width: 100%;
-      padding: 2rem;
+    .page-header {
       text-align: center;
+      padding: 4rem 2rem;
+      background-color: #007BFF;
+      color: #fff;
     }
 
-    h1 {
-      margin-bottom: 2rem;
+    #status-container {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
-    .progress-wrapper {
-      position: relative;
-      width: 100%;
-      margin: 3rem 0;
-    }
-
-    .line {
-      position: absolute;
-      top: 60px;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: #ddd;
-      z-index: 0;
-    }
-
-    .progress {
+    .progress-container {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
       position: relative;
-      z-index: 1;
+      margin: 2rem 0;
     }
 
-    .step {
+    .progress-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #e0e0e0;
+      z-index: 0;
+      transform: translateY(-50%);
+    }
+
+    .progress-step {
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 150px;
+      flex: 1;
       text-align: center;
     }
 
     .circle {
-      width: 100px;
-      height: 100px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      border: 6px solid #ccc;
-      background: #eee;
+      background: #e0e0e0;
       display: flex;
-      justify-content: center;
       align-items: center;
-      font-size: 2rem;
+      justify-content: center;
+      font-size: 1.5rem;
       font-weight: bold;
-      margin-bottom: 1rem;
-      transition: all 0.3s ease;
-    }
-
-    .step.completed .circle {
-      background: #1e90ff;
-      border-color: #1e90ff;
       color: #fff;
+      margin-bottom: 1rem;
     }
 
-    .label {
-      font-size: 1rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
+    .active {
+      background: #007BFF;
     }
 
-    .desc {
+    .progress-step h3 {
+      margin: 0.5rem 0 0.25rem;
+      font-size: 1.1rem;
+    }
+
+    .progress-step p {
       font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 0.5rem;
-    }
-
-    .timestamp {
-      font-size: 0.85rem;
-      color: #444;
+      color: #555;
+      margin: 0;
     }
   </style>
 </head>
 <body>
-  <div id="container">
-    <h1>Order Status</h1>
-    <div class="progress-wrapper">
-      <div class="line"></div>
-      <div class="progress" id="progress"></div>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <img src="logo.png" alt="534 Labs Logo" class="logo">
+        <span class="company-name">534 Labs</span>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
     </div>
-    <div id="order-info"></div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <h1>Order Status</h1>
+    <p>Track the progress of your order</p>
+  </section>
+
+  <div id="status-container">
+    <div id="order-info" style="text-align:center; margin-bottom:2rem;">Loading...</div>
+    <div class="progress-container">
+      <div class="progress-line"></div>
+    </div>
   </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="logo.png" alt="534 Labs Logo" class="footer-logo">
+          <p class="footer-slogan">Your Server, Our Technology</p>
+          <div class="social-media">
+            <a href="https://discord.gg/534labs" class="social-link" title="Discord"><i class="fab fa-discord"></i></a>
+            <a href="https://twitter.com/534labs" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://github.com/534labs" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="mailto:contact@534labs.com" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <div class="footer-section">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="services.html#erlc">ERLC Websites</a></li>
+              <li><a href="services.html#web">Web Development</a></li>
+              <li><a href="services.html#discord">Discord Bots</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="portfolio.html">Portfolio</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="index.html">Home</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 534 Labs. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
   <script>
     async function showOrderStatus() {
       const params = new URLSearchParams(window.location.search);
       const orderNumber = params.keys().next().value;
 
-      const progressDiv = document.getElementById("progress");
-      const orderInfoDiv = document.getElementById("order-info");
+      const orderInfo = document.getElementById("order-info");
+      const progressContainer = document.querySelector(".progress-container");
 
       if (!orderNumber) {
-        orderInfoDiv.innerHTML = "<p>No order number provided.</p>";
+        orderInfo.innerText = "No order number provided.";
         return;
       }
 
@@ -126,69 +184,47 @@
         if (!res.ok) throw new Error("Failed to fetch orders.json");
 
         const orders = await res.json();
+
         if (!(orderNumber in orders)) {
-          orderInfoDiv.innerHTML = "<p>Order not found!</p>";
+          orderInfo.innerText = "Order not found!";
           return;
         }
 
         const order = orders[orderNumber];
+        orderInfo.innerHTML = `<h2>${orderNumber}</h2><p>Item: ${order.item}</p>`;
 
         const steps = [
-          { id: 1, label: "Developer Assigned", desc: "A developer has been assigned to your order." },
-          { id: 2, label: "Work Started", desc: "Development work has officially begun." },
-          { id: 3, label: "Internal Review", desc: "Our team is reviewing progress and quality." },
-          { id: 4, label: "Customer Review", desc: "You are asked to review the initial work." },
-          { id: 5, label: "Final Tweaks", desc: "Adjustments are made based on feedback." },
-          { id: 6, label: "Order Delivered", desc: "The final project is completed and delivered." }
+          { id: 1, title: "Developer Assigned", desc: "A developer has been assigned to your order." },
+          { id: 2, title: "Work Started", desc: "Development work on your project has begun." },
+          { id: 3, title: "In Review", desc: "Your order is being reviewed and polished." },
+          { id: 4, title: "Deployment", desc: "Final product is being deployed and tested." },
+          { id: 5, title: "Completed", desc: "Your order has been delivered successfully." }
         ];
 
-        progressDiv.innerHTML = "";
-
         steps.forEach(step => {
-          const stepDiv = document.createElement("div");
-          stepDiv.classList.add("step");
-          if (order.status >= step.id) stepDiv.classList.add("completed");
+          const stepEl = document.createElement("div");
+          stepEl.classList.add("progress-step");
 
           const circle = document.createElement("div");
           circle.classList.add("circle");
+          if (order.status >= step.id) circle.classList.add("active");
           circle.textContent = step.id;
 
-          const label = document.createElement("div");
-          label.classList.add("label");
-          label.textContent = step.label;
+          const title = document.createElement("h3");
+          title.textContent = step.title;
 
-          const desc = document.createElement("div");
-          desc.classList.add("desc");
+          const desc = document.createElement("p");
           desc.textContent = step.desc;
 
-          const timestamp = document.createElement("div");
-          timestamp.classList.add("timestamp");
+          stepEl.appendChild(circle);
+          stepEl.appendChild(title);
+          stepEl.appendChild(desc);
 
-          if (order.timestamps && order.timestamps[step.id]) {
-            const date = new Date(order.timestamps[step.id]);
-            timestamp.textContent = date.toLocaleString(); // local timezone
-          } else if (order.status >= step.id) {
-            // fake timestamp for demo
-            const fakeDate = new Date(Date.now() - (steps.length - step.id) * 2 * 3600 * 1000);
-            timestamp.textContent = fakeDate.toLocaleString();
-          }
-
-          stepDiv.appendChild(circle);
-          stepDiv.appendChild(label);
-          stepDiv.appendChild(desc);
-          stepDiv.appendChild(timestamp);
-
-          progressDiv.appendChild(stepDiv);
+          progressContainer.appendChild(stepEl);
         });
-
-        orderInfoDiv.innerHTML = `
-          <p><strong>Order:</strong> ${orderNumber}</p>
-          <p><strong>Item:</strong> ${order.item}</p>
-        `;
-
       } catch (e) {
         console.error(e);
-        orderInfoDiv.innerHTML = "<p>Failed to load order data.</p>";
+        orderInfo.innerText = "Failed to load order data.";
       }
     }
 
