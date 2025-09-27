@@ -1,8 +1,4 @@
 {
-    "534-123456789": {
-        "status": 1,
-        "item": "Sample Product"
-    },
     "ABC-987654321": {
         "status": 2,
         "item": "Another Product"
