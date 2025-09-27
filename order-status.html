@@ -23,10 +23,57 @@
             max-width: 400px;
             width: 100%;
         }
-        #status {
-            margin-top: 1rem;
-            font-size: 1.2rem;
-            white-space: pre-line;
+
+        /* Progress tracker */
+        .progress {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .progress::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 12px; /* half of dot size */
+            right: 12px;
+            height: 4px;
+            background-color: #ccc; /* grey line for incomplete steps */
+            z-index: 0;
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .step {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .step::before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #eee; /* light grey */
+            border: 2px solid #ccc;
+            margin-bottom: 8px;
+            z-index: 2;
+        }
+
+        .step.completed::before {
+            background-color: #1e90ff; /* company blue */
+            border-color: #1e90ff;
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            color: #333;
+            text-align: center;
         }
     </style>
 </head>
@@ -34,14 +81,16 @@
     <div id="container">
         <h1>Order Status</h1>
         <div id="status">Loading...</div>
+        <div class="progress" id="progress"></div>
     </div>
 
     <script>
         async function showOrderStatus() {
             const params = new URLSearchParams(window.location.search);
-            const orderNumber = params.keys().next().value; // get first query key
+            const orderNumber = params.keys().next().value;
 
             const statusDiv = document.getElementById("status");
+            const progressDiv = document.getElementById("progress");
 
             if (!orderNumber) {
                 statusDiv.innerText = "No order number provided.";
@@ -60,8 +109,25 @@
                 }
 
                 const order = orders[orderNumber];
-                const dots = "•".repeat(order.status);
-                statusDiv.innerText = `Order: ${orderNumber}\nItem: ${order.item}\nStatus: ${dots} (${order.status})`;
+                statusDiv.innerText = `Order: ${orderNumber}\nItem: ${order.item}`;
+
+                // Define steps
+                const steps = ["Order Placed", "Processing", "Shipped", "Delivered"];
+
+                // Build progress tracker
+                progressDiv.innerHTML = '';
+                steps.forEach((step, index) => {
+                    const stepDiv = document.createElement('div');
+                    stepDiv.classList.add('step');
+                    if (index < order.status) stepDiv.classList.add('completed');
+
+                    const label = document.createElement('div');
+                    label.classList.add('step-label');
+                    label.textContent = step;
+
+                    stepDiv.appendChild(label);
+                    progressDiv.appendChild(stepDiv);
+                });
 
             } catch (e) {
                 console.error(e);
