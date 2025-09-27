@@ -1,81 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Status - 534 Labs</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Status</title>
+<style>
+    body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
+    .container { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; }
+    h1 { color: #007BFF; }
+    .status { font-size: 1.2em; margin-top: 10px; }
+</style>
 </head>
 <body>
+<div class="container">
+    <h1>Order Status</h1>
+    <p id="order-number"></p>
+    <p id="status" class="status"></p>
+</div>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="logo.png" alt="534 Labs Logo" class="logo">
-                <span class="company-name">534 Labs</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="services.html" class="nav-link">Services</a></li>
-                <li><a href="orders.html" class="nav-link active">Order Status</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+<script>
+// Get order code from URL query string
+const params = new URLSearchParams(window.location.search);
+const orderCode = params.get('order');
 
-    <!-- Page Header -->
-    <header class="page-header">
-        <div class="container">
-            <h1>Order Status</h1>
-            <p>Your order status is displayed below.</p>
-        </div>
-    </header>
+const orderNumberEl = document.getElementById('order-number');
+const statusEl = document.getElementById('status');
 
-    <!-- Status Result -->
-    <section class="status-result container">
-        <div class="status-card">
-            <h2>Order ID: <span id="display-order-id"></span></h2>
-            <p>Status: <span id="order-status-text"></span></p>
-            <p>Estimated Delivery: <span id="delivery-date"></span></p>
-        </div>
-    </section>
+if (!orderCode) {
+    orderNumberEl.textContent = "No order number provided.";
+    statusEl.textContent = "";
+} else {
+    orderNumberEl.textContent = `Order Code: ${orderCode}`;
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container footer-content">
-            <p>© 2025 534 Labs. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Function to get URL query parameters
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
+    // Fetch orders.json from GitHub
+    fetch('https://jackybob534.github.io/534.Labs/orders.json')
+    .then(res => res.json())
+    .then(orders => {
+        if (!orders[orderCode]) {
+            statusEl.textContent = "Order not found!";
+            return;
         }
-
-        const orderId = getQueryParam('order'); // Grab order ID from URL
-        const displayOrderId = document.getElementById('display-order-id');
-        const orderStatusText = document.getElementById('order-status-text');
-        const deliveryDate = document.getElementById('delivery-date');
-
-        if (!orderId) {
-            displayOrderId.textContent = 'Not provided';
-            orderStatusText.textContent = 'N/A';
-            deliveryDate.textContent = 'N/A';
-        } else {
-            displayOrderId.textContent = orderId;
-
-            // Simulate status (replace with real API call)
-            const statuses = ["Processing", "Shipped", "Delivered", "Cancelled"];
-            const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-            const estimatedDelivery = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString();
-
-            orderStatusText.textContent = randomStatus;
-            deliveryDate.textContent = estimatedDelivery;
-        }
-    </script>
-
+        const order = orders[orderCode];
+        const dots = '•'.repeat(order.status || 0);
+        statusEl.textContent = `Item: ${order.item}\nStatus: ${dots} (${order.status})`;
+    })
+    .catch(err => {
+        console.error(err);
+        statusEl.textContent = "Failed to load order data.";
+    });
+}
+</script>
 </body>
 </html>
