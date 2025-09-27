@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order Status - 534 Labs</title>
-
-  <!-- keep your main stylesheet (it contains navbar/footer styles) -->
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="icon" href="logo.png" type="image/png">
   <style>
-    /* ---- Local styles for the progress UI ---- */
     :root {
       --primary: #007BFF;
       --muted: #e6e9ee;
@@ -18,67 +15,81 @@
       --card-bg: #fff;
     }
 
-    body { background: #f6f7fb; font-family: "Segoe UI", Tahoma, Arial, sans-serif; margin:0; color:var(--text); }
+    body {
+      background: #f6f7fb;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      margin: 0;
+      color: var(--text);
+    }
 
-    /* slightly bigger hero */
+    /* --- Navbar --- */
+    .navbar {
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 2rem; }
+    .nav-logo { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-logo .logo { height: 40px; }
+    .nav-menu { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; }
+    .nav-menu .nav-item a { text-decoration: none; color: var(--text); font-weight: 500; }
+    .nav-menu .nav-item a.active { color: var(--primary); }
+
+    /* --- Hero/Header --- */
     .page-header {
       text-align: center;
-      padding: 6.5rem 2rem;
+      padding: 7rem 2rem;
       background: linear-gradient(135deg, #0b63d6 0%, var(--primary) 60%);
       color: #fff;
     }
-    .page-header h1 { font-size: 2.6rem; margin-bottom: 0.5rem; }
-    .page-header p { opacity: .95; margin:0; }
+    .page-header h1 { font-size: 2.8rem; margin-bottom: 0.5rem; }
+    .page-header p { font-size: 1.15rem; opacity: 0.95; margin: 0; }
 
-    /* container */
+    /* --- Main container --- */
     #status-container {
       max-width: 1200px;
-      margin: 2.2rem auto 4rem;
+      margin: 2rem auto 4rem;
       background: var(--card-bg);
       border-radius: 14px;
       padding: 2rem;
       box-shadow: 0 8px 30px rgba(10,20,40,0.08);
     }
+    #order-info { text-align:center; margin-bottom:2rem; }
 
-    #order-info { text-align:center; margin-bottom:1.5rem; }
-
-    /* progress area */
-    .progress-wrapper {
-      position: relative;
-      padding: 2.6rem 40px; /* spacing to keep circles away from edges */
-    }
-
+    /* --- Progress bar --- */
+    .progress-wrapper { position: relative; padding: 2.6rem 40px; }
     .progress-container {
       position: relative;
       display: flex;
-      gap: 0;
-      align-items: center;
+      align-items: flex-start;
       width: 100%;
       user-select: none;
+      gap: 0;
+      padding-bottom: 50px; /* space for line */
     }
 
-    /* the grey base line that runs under the circles - we'll set left/width in JS */
+    /* Grey base line */
     .progress-line {
       position: absolute;
       height: 6px;
       background: var(--muted);
       border-radius: 6px;
-      top: 50%;
-      transform: translateY(-50%);
+      top: calc(100% - 28px); /* line under circles */
       z-index: 0;
-      transition: left .3s ease, width .3s ease;
+      transition: left 0.3s ease, width 0.3s ease;
     }
 
-    /* blue fill that grows from left to active step (left/width set in JS) */
+    /* Blue fill */
     .progress-fill {
       position: absolute;
       height: 6px;
       background: linear-gradient(90deg, var(--primary), #0056b3);
       border-radius: 6px;
-      top: 50%;
-      transform: translateY(-50%);
+      top: calc(100% - 28px);
       z-index: 1;
-      transition: width .6s cubic-bezier(.2,.9,.2,1), left .3s ease;
+      transition: width 0.6s cubic-bezier(.2,.9,.2,1), left 0.3s ease;
     }
 
     .progress-step {
@@ -107,7 +118,6 @@
       transition: background .35s ease, transform .25s ease, box-shadow .25s ease;
       position: relative;
     }
-
     .circle.active {
       background: var(--primary);
       transform: translateY(-6px);
@@ -115,18 +125,17 @@
     }
 
     .step-title { font-weight:700; font-size:1.05rem; margin:0; color:var(--text); }
-    .step-desc { font-size:0.9rem; color:#666; margin:0; max-width: 160px; }
+    .step-desc { font-size:0.9rem; color:#666; margin:0; max-width:160px; }
 
-    /* small responsive tweaks */
-    @media (max-width: 900px) {
-      .circle { width: 68px; height:68px; font-size:1.1rem; }
+    @media (max-width:900px) {
+      .circle { width:68px; height:68px; font-size:1.1rem; }
       .page-header { padding:5.5rem 1rem; }
-      .step-desc { display:none; } /* hide long desc on small screens */
+      .step-desc { display:none; }
     }
   </style>
 </head>
 <body>
-  <!-- navigation (same style markup as services page so it looks consistent) -->
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-container">
       <div class="nav-logo">
@@ -134,21 +143,16 @@
         <span class="company-name">534 Labs</span>
       </div>
       <ul class="nav-menu">
-        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
-        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        <li class="nav-item"><a href="index.html">Home</a></li>
+        <li class="nav-item"><a href="services.html" class="active">Services</a></li>
+        <li class="nav-item"><a href="about.html">About</a></li>
+        <li class="nav-item"><a href="portfolio.html">Portfolio</a></li>
+        <li class="nav-item"><a href="contact.html">Contact</a></li>
       </ul>
-      <div class="nav-toggle">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
     </div>
   </nav>
 
-  <!-- hero/header -->
+  <!-- Hero -->
   <section class="page-header">
     <div class="container">
       <h1>Order Status</h1>
@@ -156,21 +160,19 @@
     </div>
   </section>
 
-  <!-- main content -->
+  <!-- Main -->
   <main id="status-container">
     <div id="order-info">Loading...</div>
-
     <div class="progress-wrapper">
       <div class="progress-container" id="progress-container">
-        <!-- base line and fill; positions set by JS after circles are created -->
         <div class="progress-line" id="progress-line"></div>
         <div class="progress-fill" id="progress-fill"></div>
-        <!-- .progress-step elements appended here by JS -->
+        <!-- Steps appended by JS -->
       </div>
     </div>
   </main>
 
-  <!-- footer (kept consistent with services page) -->
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
@@ -178,10 +180,10 @@
           <img src="logo.png" alt="534 Labs Logo" class="footer-logo">
           <p class="footer-slogan">Your Server, Our Technology</p>
           <div class="social-media">
-            <a href="https://discord.gg/534labs" class="social-link" title="Discord"><i class="fab fa-discord"></i></a>
-            <a href="https://twitter.com/534labs" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="https://github.com/534labs" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="mailto:contact@534labs.com" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://discord.gg/534labs" class="social-link"><i class="fab fa-discord"></i></a>
+            <a href="https://twitter.com/534labs" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="https://github.com/534labs" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="mailto:contact@534labs.com" class="social-link"><i class="fas fa-envelope"></i></a>
           </div>
         </div>
         <div class="footer-links">
@@ -211,41 +213,27 @@
   </footer>
 
   <script>
-    // === CONFIG ===
-    // Use absolute GitHub Pages URL to avoid relative-path confusion:
-    const ORDERS_URL = 'https://jackybob534.github.io/534.Labs/orders.json';
-    // Steps shown on the progress bar (you asked ChatGPT to fill some statuses)
+    const ORDERS_URL = 'orders.json'; // replace with your JSON location
     const STEPS = [
-      { id: 1, title: "Developer Assigned", desc: "A developer has been assigned to your order." },
-      { id: 2, title: "Work Started",     desc: "Development work on your project has begun." },
-      { id: 3, title: "In Review",        desc: "Your order is being reviewed and polished." },
-      { id: 4, title: "Deployment",       desc: "Final product is being deployed and tested." },
-      { id: 5, title: "Completed",        desc: "Your order has been delivered successfully." }
+      { id:1, title:"Developer Assigned", desc:"A developer has been assigned to your order." },
+      { id:2, title:"Work Started", desc:"Development work on your project has begun." },
+      { id:3, title:"In Review", desc:"Your order is being reviewed and polished." },
+      { id:4, title:"Deployment", desc:"Final product is being deployed and tested." },
+      { id:5, title:"Completed", desc:"Your order has been delivered successfully." }
     ];
 
-    // === Utilities ===
     function getOrderFromSearch() {
-      const search = window.location.search || '';
-      if (!search) return null;
-
+      const search = window.location.search;
+      if(!search) return null;
       const params = new URLSearchParams(search);
-      // common explicit keys:
-      const explicit = params.get('id') || params.get('order') || params.get('o') || null;
-      if (explicit) return explicit;
-
-      // If user used bare ?534-001 (no '=') we'll parse that too:
-      const raw = search.replace(/^\?/, '');
-      if (raw && !raw.includes('=')) return decodeURIComponent(raw);
-
-      // fallback to first key (if there is one)
-      const firstKey = params.keys().next().value;
-      return firstKey || null;
+      const explicit = params.get('id') || params.get('order') || params.get('o');
+      if(explicit) return explicit;
+      const raw = search.replace(/^\?/,'');
+      return raw && !raw.includes('=') ? decodeURIComponent(raw) : params.keys().next().value;
     }
 
-    // clamp helper
-    function clamp(n, a, b) { return Math.max(a, Math.min(b, n)); }
+    function clamp(n,a,b){return Math.max(a,Math.min(b,n));}
 
-    // main
     async function showOrderStatus() {
       const orderId = getOrderFromSearch();
       const orderInfo = document.getElementById('order-info');
@@ -253,119 +241,48 @@
       const progressLine = document.getElementById('progress-line');
       const progressFill = document.getElementById('progress-fill');
 
-      if (!orderId) {
-        orderInfo.textContent = 'No order number provided. (Try ?534-001 or ?id=534-001)';
-        console.log('Order-status: no orderId found in URL.');
-        return;
-      }
+      if(!orderId){ orderInfo.textContent='No order number provided.'; return; }
 
       orderInfo.textContent = 'Loading order ' + orderId + '...';
-      console.log('Order-status: looking up', orderId);
-
       let orders;
-      try {
-        const r = await fetch(ORDERS_URL, { cache: "no-store" });
-        if (!r.ok) throw new Error('Fetch failed: ' + r.status + ' ' + r.statusText);
-        orders = await r.json();
-      } catch (err) {
-        orderInfo.textContent = 'Failed to fetch orders data. Open devtools console for details.';
-        console.error('Failed to fetch orders.json from', ORDERS_URL, err);
-        return;
-      }
+      try { const r = await fetch(ORDERS_URL); orders = await r.json(); } 
+      catch(err){ orderInfo.textContent='Failed to fetch orders data.'; console.error(err); return; }
 
-      if (!orders || !orders[orderId]) {
-        orderInfo.innerHTML = `<strong>Order not found:</strong> ${orderId}`;
-        console.log('Order-status: order not in JSON:', orderId, orders);
-        return;
-      }
+      if(!orders[orderId]){ orderInfo.innerHTML=`<strong>Order not found:</strong> ${orderId}`; return; }
 
       const order = orders[orderId];
-      // robust numeric parsing of status
-      let statusNum = parseInt(order.status, 10);
-      if (Number.isNaN(statusNum)) statusNum = 0;
-      statusNum = clamp(statusNum, 0, STEPS.length);
+      let statusNum = clamp(parseInt(order.status,10)||0,0,STEPS.length);
 
       orderInfo.innerHTML = `<h2 style="margin:.2rem 0">${orderId}</h2>
-                              <div style="color:#555">${order.item ? 'Item: ' + order.item : 'Item: (unknown)'}</div>
-                              <div style="margin-top:.4rem;color:#666;font-size:.95rem">Status: ${statusNum} / ${STEPS.length}</div>`;
+                             <div style="color:#555">${order.item?'Item: '+order.item:'Item: (unknown)'}</div>
+                             <div style="margin-top:.4rem;color:#666;font-size:.95rem">Status: ${statusNum}/${STEPS.length}</div>`;
 
-      // clear previous steps if any
-      progressContainer.querySelectorAll('.progress-step').forEach(el => el.remove());
+      progressContainer.querySelectorAll('.progress-step').forEach(el=>el.remove());
 
-      // create steps
-      STEPS.forEach(step => {
-        const stepEl = document.createElement('div');
-        stepEl.className = 'progress-step';
-        stepEl.dataset.step = step.id;
-
-        const circle = document.createElement('div');
-        circle.className = 'circle';
-        circle.textContent = step.id;
-
-        // active if statusNum >= step.id (note: statusNum 0 => none active)
-        if (statusNum >= step.id && statusNum > 0) {
-          circle.classList.add('active');
-        }
-
-        const title = document.createElement('div');
-        title.className = 'step-title';
-        title.textContent = step.title;
-
-        const desc = document.createElement('div');
-        desc.className = 'step-desc';
-        desc.textContent = step.desc;
-
-        stepEl.appendChild(circle);
-        stepEl.appendChild(title);
-        stepEl.appendChild(desc);
+      STEPS.forEach(step=>{
+        const stepEl = document.createElement('div'); stepEl.className='progress-step';
+        const circle = document.createElement('div'); circle.className='circle'; circle.textContent=step.id;
+        if(statusNum>=step.id && statusNum>0) circle.classList.add('active');
+        const title=document.createElement('div'); title.className='step-title'; title.textContent=step.title;
+        const desc=document.createElement('div'); desc.className='step-desc'; desc.textContent=step.desc;
+        stepEl.appendChild(circle); stepEl.appendChild(title); stepEl.appendChild(desc);
         progressContainer.appendChild(stepEl);
       });
 
-      // Wait a frame so layout is settled, then measure and set line positions.
-      requestAnimationFrame(() => {
+      requestAnimationFrame(()=>{
         const circles = Array.from(progressContainer.querySelectorAll('.circle'));
-        if (circles.length === 0) return;
-
+        if(circles.length===0) return;
         const containerRect = progressContainer.getBoundingClientRect();
-        const centers = circles.map(c => {
-          const r = c.getBoundingClientRect();
-          return (r.left - containerRect.left) + (r.width / 2);
-        });
-
-        const left = centers[0];
-        const right = centers[centers.length - 1];
-        const totalLineWidth = Math.max(0, right - left);
-
-        // set the grey base line to run between first and last circle centers
-        progressLine.style.left = `${left}px`;
-        progressLine.style.width = `${totalLineWidth}px`;
-
-        // put the fill's left at same origin as base line
-        progressFill.style.left = `${left}px`;
-
-        // compute fill width up to the active circle center (if statusNum === 0 -> width 0)
-        let fillWidth = 0;
-        if (statusNum > 0) {
-          const lastIndex = clamp(statusNum - 1, 0, centers.length - 1);
-          const circleEl = circles[lastIndex];
-          const circleRect = circleEl.getBoundingClientRect();
-          const circleRadius = circleRect.width / 2;
-          fillWidth = Math.max(0, (centers[lastIndex] + circleRadius) - left);
-        }
-        // tiny delay so CSS transitions look nice
-        requestAnimationFrame(() => {
-          progressFill.style.width = `${fillWidth}px`;
-        });
-
-        // debug logs
-        console.log('Order-status debug:', { orderId, statusNum, centers, left, right, totalLineWidth, fillWidth });
+        const centers = circles.map(c=>{ const r=c.getBoundingClientRect(); return (r.left-containerRect.left)+(r.width/2); });
+        const left = centers[0], right = centers[centers.length-1], totalLineWidth = Math.max(0,right-left);
+        progressLine.style.left=`${left}px`; progressLine.style.width=`${totalLineWidth}px`;
+        progressFill.style.left=`${left}px`;
+        let fillWidth=0; if(statusNum>0){ const lastIndex=clamp(statusNum-1,0,centers.length-1); const circleEl=circles[lastIndex]; const circleRect=circleEl.getBoundingClientRect(); const circleRadius=circleRect.width/2; fillWidth=Math.max(0,(centers[lastIndex]+circleRadius)-left); }
+        requestAnimationFrame(()=>{ progressFill.style.width=`${fillWidth}px`; });
       });
     }
 
     showOrderStatus();
-
-    // OPTIONAL: If you update orders.json and GitHub Pages caching makes it stale,
-    // do a hard refresh (Ctrl+F5) or append a timestamp to the ORDERS_URL (dev use only).
   </script>
 </body>
 </html>
