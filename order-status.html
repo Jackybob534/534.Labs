@@ -20,25 +20,28 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
     padding: 2rem;
     text-align: center;
 }
 
 .progress {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row-reverse; /* Right-to-left flow */
+    justify-content: space-between;
+    align-items: flex-start;
     position: relative;
     width: 100%;
+    height: 200px;
 }
 
 .line {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 8px;
     background-color: #ccc;
+    width: 100%;
     z-index: 0;
 }
 
@@ -47,7 +50,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 3rem 0;
     z-index: 1;
 }
 
@@ -72,8 +74,9 @@ body {
 }
 
 .label {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-bottom: 0.5rem;
+    width: 120px;
 }
 
 .timestamp {
@@ -126,10 +129,8 @@ async function showOrderStatus() {
 
         progressDiv.innerHTML = '';
 
-        const totalHeight = steps.length * 160;
         const lineDiv = document.createElement('div');
         lineDiv.classList.add('line');
-        lineDiv.style.height = `${totalHeight}px`;
         progressDiv.appendChild(lineDiv);
 
         steps.forEach((step) => {
@@ -147,10 +148,13 @@ async function showOrderStatus() {
 
             const timestamp = document.createElement('div');
             timestamp.classList.add('timestamp');
+
+            // Show completion time in user local timezone
             if (order.timestamps && order.timestamps[step.id]) {
-                timestamp.textContent = order.timestamps[step.id];
+                const date = new Date(order.timestamps[step.id]);
+                timestamp.textContent = date.toLocaleString();
             } else if (order.status >= step.id) {
-                // generate fake timestamp for demo
+                // fake timestamp for demo
                 const fakeDate = new Date(Date.now() - (steps.length - step.id) * 3600 * 1000);
                 timestamp.textContent = fakeDate.toLocaleString();
             } else {
