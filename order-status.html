@@ -347,7 +347,10 @@
         let fillWidth = 0;
         if (statusNum > 0) {
           const lastIndex = clamp(statusNum - 1, 0, centers.length - 1);
-          fillWidth = Math.max(0, centers[lastIndex] - left);
+          const circleEl = circles[lastIndex];
+          const circleRect = circleEl.getBoundingClientRect();
+          const circleRadius = circleRect.width / 2;
+          fillWidth = Math.max(0, (centers[lastIndex] + circleRadius) - left);
         }
         // tiny delay so CSS transitions look nice
         requestAnimationFrame(() => {
