@@ -87,21 +87,24 @@ is obtained from 534 Labs.
   .section-title { font-size: 2rem; margin-bottom: 0.5rem; color: #00bcd4; }
   .section-subtitle { color: #aaa; margin-bottom: 3rem; }
   .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-  .service-card { background: #111; padding: 2rem; border-radius: 12px; transition: transform 0.3s; }
+  .service-card { background: #111; padding: 2rem; border-radius: 12px; transition: transform 0.3s; text-align: center; }
   .service-card:hover { transform: translateY(-8px); }
   .service-icon { font-size: 2rem; margin-bottom: 1rem; color: #00bcd4; }
   .service-link { color: #00bcd4; text-decoration: none; font-weight: 500; }
   .service-link:hover { text-decoration: underline; }
 
-  /* Why Choose Section */
-  .why-choose { padding: 4rem 2rem; text-align: center; background: #111; }
-  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-  .feature-card { background: #0d0d0d; padding: 1.5rem; border-radius: 12px; font-size: 1rem; line-height: 1.4; }
-  .feature-card strong { color: #00bcd4; display: block; margin-top: 0.5rem; }
+  /* Why Choose Section as cards like services */
+  .why-choose { padding: 4rem 2rem; text-align: center; }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
+  .why-card { background: #111; padding: 2rem; border-radius: 12px; transition: transform 0.3s; text-align: center; }
+  .why-card:hover { transform: translateY(-8px); }
+  .why-icon { font-size: 2rem; margin-bottom: 1rem; color: #00bcd4; }
+  .why-title { font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem; }
+  .why-desc { color: #ccc; line-height: 1.5; }
 
   /* Code Box */
   .code-preview { display: flex; justify-content: center; padding: 2rem; background: #0d0d0d; }
-  .code-box { background: #111; padding: 1.5rem; border-radius: 10px; font-family: monospace; font-size: 0.95rem; color: #f0f0f0; text-align: left; width: 100%; max-width: 600px; overflow-x: auto; position: relative; }
+  .code-box { background: #111; padding: 1.5rem; border-radius: 10px; font-family: monospace; font-size: 0.95rem; color: #f0f0f0; text-align: left; width: 100%; max-width: 600px; height: 250px; overflow-y: auto; position: relative; }
   .code-box::after { content: '|'; animation: blink 1s infinite; position: absolute; right: 1.5rem; bottom: 1.5rem; }
   @keyframes blink { 0%,50%,100%{opacity:1;}25%,75%{opacity:0;} }
 
@@ -112,7 +115,11 @@ is obtained from 534 Labs.
   .social-media { display: flex; gap: 1rem; justify-content: center; }
   .footer-bottom { margin-top: 2rem; text-align: center; font-size: 0.9rem; color: #666; }
 
-  @media (max-width:768px){ .hero{ flex-direction: column; } .cube-container{ margin:2rem 0 0 0; } .hero-content{ margin-right:0; } }
+  @media (max-width:768px){ 
+    .hero{ flex-direction: column; } 
+    .cube-container{ margin:2rem 0 0 0; } 
+    .hero-content{ margin-right:0; } 
+  }
 </style>
 </head>
 <body>
@@ -184,11 +191,27 @@ is obtained from 534 Labs.
 <!-- Why Choose -->
 <section class="why-choose">
   <h2 class="section-title">Why Choose 534 Labs?</h2>
-  <div class="features-grid">
-    <div class="feature-card">⚡ <strong>Fast Delivery</strong><br><span>Quick turnaround times without compromising on quality</span></div>
-    <div class="feature-card">🛡️ <strong>Secure & Reliable</strong><br><span>Built with security best practices</span></div>
-    <div class="feature-card">💬 <strong>24/7 Support</strong><br><span>Always available to help with questions and issues</span></div>
-    <div class="feature-card">🎨 <strong>Custom Design</strong><br><span>Tailored solutions that match your brand and requirements</span></div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">⚡</div>
+      <div class="why-title">Fast Delivery</div>
+      <div class="why-desc">Quick turnaround times without compromising on quality.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🛡️</div>
+      <div class="why-title">Secure & Reliable</div>
+      <div class="why-desc">Built with security best practices to keep your data safe.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💬</div>
+      <div class="why-title">24/7 Support</div>
+      <div class="why-desc">Always available to help with questions and issues.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🎨</div>
+      <div class="why-title">Custom Design</div>
+      <div class="why-desc">Tailored solutions that match your brand and requirements.</div>
+    </div>
   </div>
 </section>
 
@@ -212,75 +235,34 @@ is obtained from 534 Labs.
 
 <script>
 // Particle background
-const canvas = document.getElementById('bgCanvas');
-const ctx = canvas.getContext('2d');
-let particles = [];
-const numParticles = 120;
-
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
+const canvas=document.getElementById('bgCanvas');
+const ctx=canvas.getContext('2d');
+let particles=[]; const numParticles=120;
+function resizeCanvas(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
+window.addEventListener('resize',resizeCanvas);
 resizeCanvas();
-
-for (let i = 0; i < numParticles; i++) {
-  particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random()-0.5)*0.8, vy: (Math.random()-0.5)*0.8 });
-}
-
-function draw() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  for(let i=0;i<particles.length;i++){
-    let p=particles[i];
-    p.x+=p.vx; p.y+=p.vy;
-    if(p.x<0||p.x>canvas.width)p.vx*=-1;
-    if(p.y<0||p.y>canvas.height)p.vy*=-1;
-
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,2,0,Math.PI*2);
-    ctx.fillStyle='#00bcd4';
-    ctx.fill();
-
-    for(let j=i+1;j<particles.length;j++){
-      let q=particles[j];
-      let dx=p.x-q.x; let dy=p.y-q.y;
-      let dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist<120){
-        ctx.beginPath();
-        ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y);
-        ctx.strokeStyle='rgba(0,188,212,'+(1-dist/120)+')';
-        ctx.stroke();
-      }
-    }
-  }
-  requestAnimationFrame(draw);
-}
+for(let i=0;i<numParticles;i++){ particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5)*0.8,vy:(Math.random()-0.5)*0.8}); }
+function draw(){ ctx.clearRect(0,0,canvas.width,canvas.height); for(let i=0;i<particles.length;i++){ let p=particles[i]; p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>canvas.width)p.vx*=-1; if(p.y<0||p.y>canvas.height)p.vy*=-1; ctx.beginPath(); ctx.arc(p.x,p.y,2,0,Math.PI*2); ctx.fillStyle='#00bcd4'; ctx.fill(); for(let j=i+1;j<particles.length;j++){ let q=particles[j]; let dx=p.x-q.x; let dy=p.y-q.y; let dist=Math.sqrt(dx*dx+dy*dy); if(dist<120){ ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle='rgba(0,188,212,'+(1-dist/120)+')'; ctx.stroke(); } } } requestAnimationFrame(draw); }
 draw();
 
-// Code typing effect
+// Typing code effect
 const codeOutput=document.getElementById("code-output");
 const messages=[
   "<html>\n  <body>\n    <h1>Welcome to 534 Labs</h1>\n    <p>Your server, our technology 🚀</p>\n  </body>\n</html>",
   "<html>\n  <body>\n    <h1>Fast & Reliable</h1>\n    <p>Professional web solutions in record time ⚡</p>\n  </body>\n</html>",
   "<html>\n  <body>\n    <h1>Custom Design</h1>\n    <p>Tailored solutions for your brand 🎨</p>\n  </body>\n</html>"
 ];
-let msgIndex=0, charIndex=0, typingSpeed=30;
-function typeMessage(){
-  if(charIndex<messages[msgIndex].length){
-    codeOutput.textContent+=messages[msgIndex][charIndex++];
-    setTimeout(typeMessage,typingSpeed);
-  }else{
-    setTimeout(()=>{
-      codeOutput.textContent='';
-      charIndex=0;
-      msgIndex=(msgIndex+1)%messages.length;
-      typeMessage();
-    },2000);
-  }
+let msgIndex=0,charIndex=0,typingSpeed=30;
+function typeMessage(){ 
+  if(charIndex<messages[msgIndex].length){ 
+    codeOutput.textContent+=messages[msgIndex][charIndex++]; 
+    setTimeout(typeMessage,typingSpeed); 
+  }else{ 
+    setTimeout(()=>{ codeOutput.textContent=''; charIndex=0; msgIndex=(msgIndex+1)%messages.length; typeMessage(); },2000); 
+  } 
 }
 typeMessage();
 </script>
+
 </body>
 </html>
-
-
