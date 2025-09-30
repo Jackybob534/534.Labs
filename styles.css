@@ -2463,9 +2463,6 @@ section:nth-child(odd) {
   text-decoration: underline; /* Optional */
 }
 
-.service-link:visited {
-  color: #007BFF;       /* Keep visited links blue instead of purple */
-}
 
 
 
