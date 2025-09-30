@@ -35,7 +35,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: #ffffff;
+    background-color: #343a40;
 }
 
 /* CSS Variables for Brand Colors - High Contrast Enhanced */
@@ -2468,4 +2468,5 @@ a:active, a:focus {
   color: #004085; /* Even darker shade for active/focus */
   outline: none;  /* Optional: removes default focus outline */
 }
+
 
