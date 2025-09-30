@@ -222,16 +222,52 @@ is obtained from 534 Labs.
 
 <!-- Footer -->
 <footer class="footer">
-  <div class="footer-content">
-    <img src="logo.png" alt="534 Labs Logo" class="footer-logo">
-    <p class="footer-slogan">Your Server, Our Technology</p>
-    <div class="social-media">
-      <a href="https://discord.gg/534labs" class="social-link" title="Discord"><i class="fab fa-discord"></i></a>
-      <a href="mailto:contact@534labs.com" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+  <div class="footer-content" style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem; max-width:1200px; margin:0 auto;">
+    
+    <!-- Company Logo & Slogan -->
+    <div style="flex:1; min-width:200px; text-align:center;">
+      <img src="logo.png" alt="534 Labs Logo" class="footer-logo" style="width:60px; margin-bottom:1rem;">
+      <p class="footer-slogan" style="color:#ccc;">Your Server, Our Technology</p>
+      <div class="social-media" style="display:flex; justify-content:center; gap:1rem;">
+        <a href="https://discord.gg/534labs" class="social-link" title="Discord"><i class="fab fa-discord"></i></a>
+        <a href="mailto:contact@534labs.com" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
     </div>
+
+    <!-- Services Links -->
+    <div style="flex:1; min-width:150px;">
+      <h3 style="color:#00bcd4; margin-bottom:1rem;">Services</h3>
+      <ul style="list-style:none; padding:0; color:#ccc;">
+        <li><a href="services.html#web" class="footer-link" style="color:#ccc; text-decoration:none;">Websites</a></li>
+        <li><a href="services.html#dev" class="footer-link" style="color:#ccc; text-decoration:none;">Web Development</a></li>
+        <li><a href="services.html#discord" class="footer-link" style="color:#ccc; text-decoration:none;">Discord Bots</a></li>
+      </ul>
+    </div>
+
+    <!-- Pages Links -->
+    <div style="flex:1; min-width:150px;">
+      <h3 style="color:#00bcd4; margin-bottom:1rem;">Pages</h3>
+      <ul style="list-style:none; padding:0; color:#ccc;">
+        <li><a href="index.html" class="footer-link" style="color:#ccc; text-decoration:none;">Home</a></li>
+        <li><a href="about.html" class="footer-link" style="color:#ccc; text-decoration:none;">About</a></li>
+        <li><a href="portfolio.html" class="footer-link" style="color:#ccc; text-decoration:none;">Portfolio</a></li>
+        <li><a href="contact.html" class="footer-link" style="color:#ccc; text-decoration:none;">Contact</a></li>
+      </ul>
+    </div>
+
   </div>
-  <div class="footer-bottom">&copy; 2025 534 Labs. All rights reserved.</div>
+
+  <!-- Privacy & Terms -->
+  <div style="text-align:center; margin-top:1.5rem; font-size:0.85rem; color:#888;">
+    <a href="privacy.html" style="color:#888; text-decoration:none; margin-right:1rem;">Privacy Policy</a> | 
+    <a href="terms.html" style="color:#888; text-decoration:none; margin-left:1rem;">Terms of Service</a>
+  </div>
+
+  <div class="footer-bottom" style="margin-top:1rem; text-align:center; font-size:0.9rem; color:#666;">
+    &copy; 2025 534 Labs. All rights reserved.
+  </div>
 </footer>
+
 
 <script>
 // Particle background
@@ -266,4 +302,5 @@ typeMessage();
 
 </body>
 </html>
+
 
