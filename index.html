@@ -37,7 +37,18 @@ is obtained from 534 Labs.
       overflow-x: hidden;
     }
 
-    a { text-decoration: none; }
+    /* All links blue */
+    a {
+      color: #0000EE;
+      text-decoration: none;
+    }
+    a:hover, a:focus {
+      color: #0000EE;
+      text-decoration: underline;
+    }
+    a:visited {
+      color: #0000EE;
+    }
 
     /* Navbar */
     .navbar {
@@ -49,26 +60,9 @@ is obtained from 534 Labs.
     }
     .nav-container { display: flex; justify-content: space-between; align-items: center; }
     .logo { width: 40px; margin-right: 10px; }
-    .company-name { font-size: 1.5rem; font-weight: bold; color: #00bcd4; }
+    .company-name { font-size: 1.5rem; font-weight: bold; }
     .nav-menu { list-style: none; display: flex; gap: 1.5rem; margin: 0; padding: 0; }
-    .nav-link {
-      position: relative;
-      color: #fff;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -4px;
-      left: 0;
-      background-color: #00bcd4;
-      transition: width 0.3s;
-    }
-    .nav-link:hover::after { width: 100%; }
-    .nav-link:hover { color: #00bcd4; }
+    .nav-link { font-weight: 500; }
 
     /* Hero */
     .hero {
@@ -83,13 +77,12 @@ is obtained from 534 Labs.
       flex-wrap: wrap;
     }
     .hero-content { max-width: 500px; margin-right: 4rem; z-index: 2; }
-    .hero-title { font-size: 2.5rem; color: #00bcd4; margin-bottom: 1rem; }
+    .hero-title { font-size: 2.5rem; margin-bottom: 1rem; }
     .hero-subtitle { font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem; color: #ccc; }
     .btn {
       padding: 0.8rem 1.5rem;
       border-radius: 8px;
       font-weight: bold;
-      transition: 0.3s;
       margin-right: 1rem;
       display: inline-block;
     }
@@ -127,25 +120,18 @@ is obtained from 534 Labs.
 
     /* Services */
     .services-preview { padding: 4rem 2rem; text-align: center; position: relative; z-index: 2; }
-    .section-title { font-size: 2rem; color: #00bcd4; margin-bottom: 0.5rem; }
+    .section-title { font-size: 2rem; margin-bottom: 0.5rem; }
     .section-subtitle { color: #aaa; margin-bottom: 3rem; }
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-    .service-card {
-      background: #111;
-      padding: 2rem;
-      border-radius: 12px;
-      transition: transform 0.3s;
-    }
+    .service-card { background: #111; padding: 2rem; border-radius: 12px; transition: transform 0.3s; }
     .service-card:hover { transform: translateY(-8px); }
-    .service-icon { font-size: 2rem; color: #00bcd4; margin-bottom: 1rem; }
+    .service-icon { font-size: 2rem; margin-bottom: 1rem; }
 
     /* Footer */
     .footer { background: #111; padding: 3rem 2rem; text-align: center; }
     .footer-logo { width: 50px; margin-bottom: 1rem; }
     .footer-slogan { color: #ccc; margin-bottom: 1rem; }
     .social-media { display: flex; gap: 1rem; justify-content: center; }
-    .social-link { color: #00bcd4; font-size: 1.5rem; transition: 0.3s; }
-    .social-link:hover { color: #1de9b6; }
     .footer-bottom { margin-top: 2rem; text-align: center; font-size: 0.9rem; color: #666; }
 
     @media (max-width: 768px) {
@@ -290,4 +276,3 @@ is obtained from 534 Labs.
   </script>
 </body>
 </html>
-
