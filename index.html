@@ -49,7 +49,8 @@ is obtained from 534 Labs.
     .logo { width: 40px; margin-right: 10px; }
     .company-name { font-size: 1.5rem; font-weight: bold; }
     .nav-menu { list-style: none; display: flex; gap: 1.5rem; margin: 0; padding: 0; }
-    .nav-link { font-weight: 500; }
+    .nav-link { font-weight: 500; color: #fff; text-decoration: none; }
+    .nav-link:hover { color: #00bcd4; }
 
     /* Hero */
     .hero {
@@ -72,6 +73,7 @@ is obtained from 534 Labs.
       font-weight: bold;
       margin-right: 1rem;
       display: inline-block;
+      text-decoration: none;
     }
     .btn-primary { background: #00bcd4; color: #000; }
     .btn-primary:hover { background: #1de9b6; }
@@ -107,12 +109,20 @@ is obtained from 534 Labs.
 
     /* Services */
     .services-preview { padding: 4rem 2rem; text-align: center; position: relative; z-index: 2; }
-    .section-title { font-size: 2rem; margin-bottom: 0.5rem; }
+    .section-title { font-size: 2rem; margin-bottom: 0.5rem; color: #00bcd4; }
     .section-subtitle { color: #aaa; margin-bottom: 3rem; }
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
     .service-card { background: #111; padding: 2rem; border-radius: 12px; transition: transform 0.3s; }
     .service-card:hover { transform: translateY(-8px); }
-    .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .service-icon { font-size: 2rem; margin-bottom: 1rem; color: #00bcd4; }
+
+    /* Only service links blue */
+    .service-link {
+      color: #00bcd4;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .service-link:hover { text-decoration: underline; }
 
     /* Footer */
     .footer { background: #111; padding: 3rem 2rem; text-align: center; }
@@ -263,4 +273,3 @@ is obtained from 534 Labs.
   </script>
 </body>
 </html>
-
