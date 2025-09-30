@@ -343,12 +343,17 @@ section:nth-child(odd) {
 
 /* Hero Section - No Navigation Overlap */
 .hero {
-    padding: 150px 0 100px;
-    background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 50%, var(--light-gray) 100%);
-    position: relative;
-    overflow: hidden;
-    margin-top: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem;   /* smaller top/bottom space */
+  min-height: 50vh;    /* takes up about half the screen instead of 70% */
+  background: #0d0d0d;
+  overflow: hidden;
+  flex-wrap: wrap;
 }
+
 
 .hero::before {
     content: '';
@@ -2459,6 +2464,7 @@ section:nth-child(odd) {
 .service-link:hover {
   text-decoration: underline;
 }
+
 
 
 
