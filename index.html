@@ -52,19 +52,72 @@ is obtained from 534 Labs.
     .nav-link { font-weight: 500; color: #fff; text-decoration: none; }
     .nav-link:hover { color: #00bcd4; }
 
+    /* Why Choose Section */
+    .why-choose {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: #111;
+    }
+    .why-choose .section-title {
+      font-size: 2rem;
+      color: #00bcd4;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .feature-card {
+      background: #0d0d0d;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    .feature-card strong {
+      color: #00bcd4;
+      display: block;
+      margin-top: 0.5rem;
+    }
+
+    /* Code Box */
+    .code-preview {
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+      background: #0d0d0d;
+    }
+    .code-box {
+      background: #111;
+      padding: 1.5rem;
+      border-radius: 10px;
+      font-family: monospace;
+      font-size: 0.95rem;
+      color: #f0f0f0;
+      text-align: left;
+      width: 100%;
+      max-width: 600px;
+      overflow-x: auto;
+      box-shadow: 0 0 15px rgba(0, 188, 212, 0.4);
+    }
+    .code-box .tag { color: #00bcd4; }
+    .code-box .text { color: #ccc; }
+
     /* Hero */
     .hero {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 6rem 2rem;
+      padding: 4rem 2rem;
       min-height: 50vh;
       background: #0d0d0d;
       overflow: hidden;
       flex-wrap: wrap;
     }
-    .hero-content { max-width: 500px; margin-right: 4rem; z-index: 2; }
+    .hero-content { max-width: 500px; margin-right: 2rem; z-index: 2; }
     .hero-title { font-size: 2.5rem; margin-bottom: 1rem; }
     .hero-subtitle { font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem; color: #ccc; }
     .btn {
@@ -134,10 +187,13 @@ is obtained from 534 Labs.
     @media (max-width: 768px) {
       .hero { flex-direction: column; }
       .cube-container { margin: 2rem 0 0 0; }
+      .hero-content { margin-right: 0; }
     }
   </style>
 </head>
 <body>
+
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-container">
       <div class="nav-logo">
@@ -154,6 +210,40 @@ is obtained from 534 Labs.
     </div>
   </nav>
 
+  <!-- Why Choose 534 Labs -->
+  <section class="why-choose">
+    <h2 class="section-title">Why Choose 534 Labs?</h2>
+    <div class="features-grid">
+      <div class="feature-card">⚡ <strong>Fast Delivery</strong><br>
+        <span>Quick turnaround times without compromising on quality</span>
+      </div>
+      <div class="feature-card">🛡️ <strong>Secure & Reliable</strong><br>
+        <span>Built with security best practices</span>
+      </div>
+      <div class="feature-card">💬 <strong>24/7 Support</strong><br>
+        <span>Always available to help with questions and issues</span>
+      </div>
+      <div class="feature-card">🎨 <strong>Custom Design</strong><br>
+        <span>Tailored solutions that match your brand and requirements</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Code Preview Box -->
+  <section class="code-preview">
+    <div class="code-box">
+<pre>
+<span class="tag">&lt;html&gt;</span>
+  <span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;h1&gt;</span><span class="text">Welcome to 534 Labs</span><span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="text">Your server, our technology 🚀</span><span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span>
+</pre>
+    </div>
+  </section>
+
+  <!-- Hero Section -->
   <section class="hero">
     <canvas id="bgCanvas"></canvas>
     <div class="hero-content">
@@ -174,6 +264,7 @@ is obtained from 534 Labs.
     </div>
   </section>
 
+  <!-- Services -->
   <section class="services-preview">
     <h2 class="section-title">What We Do</h2>
     <p class="section-subtitle">Professional digital solutions for the modern gaming world</p>
@@ -199,6 +290,7 @@ is obtained from 534 Labs.
     </div>
   </section>
 
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
       <img src="logo.png" alt="534 Labs Logo" class="footer-logo">
@@ -217,6 +309,7 @@ is obtained from 534 Labs.
     </div>
   </footer>
 
+  <!-- Particle Script -->
   <script>
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
@@ -271,6 +364,7 @@ is obtained from 534 Labs.
     }
     draw();
   </script>
+
 </body>
 </html>
 
