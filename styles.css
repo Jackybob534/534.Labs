@@ -347,12 +347,13 @@ section:nth-child(odd) {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3rem 2rem;   /* smaller top/bottom space */
-  min-height: 50vh;    /* takes up about half the screen instead of 70% */
+  padding: 4rem 2rem;     /* enough breathing room */
+  min-height: 50vh;       /* fills half the screen, not too tall */
   background: #0d0d0d;
   overflow: hidden;
   flex-wrap: wrap;
 }
+
 
 
 .hero::before {
@@ -2464,6 +2465,7 @@ section:nth-child(odd) {
 .service-link:hover {
   text-decoration: underline;
 }
+
 
 
 
