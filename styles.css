@@ -2453,14 +2453,11 @@ section:nth-child(odd) {
 }
 
 .service-link {
-  color: #007BFF;       /* Your brand blue */
-  text-decoration: none; /* Remove underline */
-  transition: color 0.3s;
+  color: #00bcd4;
+  text-decoration: none;
 }
-
 .service-link:hover {
-  color: #0056b3;       /* Darker blue on hover */
-  text-decoration: underline; /* Optional */
+  text-decoration: underline;
 }
 
 a {
@@ -2471,6 +2468,7 @@ a {
 a:hover {
     color: #0056b3; /* darker blue on hover */
 }
+
 
 
 
