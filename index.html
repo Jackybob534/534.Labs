@@ -22,349 +22,265 @@ is obtained from 534 Labs.
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>534 Labs - Your Server, Our Technology</title>
-  <meta name="description" content="534 Labs specializes in creating websites, Discord bots, and custom web solutions.">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="icon" href="logo.png" type="image/png">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #0d0d0d;
-      color: #f0f0f0;
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>534 Labs - Your Server, Our Technology</title>
+<meta name="description" content="534 Labs specializes in creating websites, Discord bots, and custom web solutions.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="icon" href="logo.png" type="image/png">
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0d0d0d;
+    color: #f0f0f0;
+    overflow-x: hidden;
+  }
 
-    /* Navbar */
-    .navbar {
-      background: #111;
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .nav-container { display: flex; justify-content: space-between; align-items: center; }
-    .logo { width: 40px; margin-right: 10px; }
-    .company-name { font-size: 1.5rem; font-weight: bold; }
-    .nav-menu { list-style: none; display: flex; gap: 1.5rem; margin: 0; padding: 0; }
-    .nav-link { font-weight: 500; color: #fff; text-decoration: none; }
-    .nav-link:hover { color: #00bcd4; }
+  /* Navbar */
+  .navbar { background: #111; padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; }
+  .nav-container { display: flex; justify-content: space-between; align-items: center; }
+  .logo { width: 40px; margin-right: 10px; }
+  .company-name { font-size: 1.5rem; font-weight: bold; }
+  .nav-menu { list-style: none; display: flex; gap: 1.5rem; margin: 0; padding: 0; }
+  .nav-link { font-weight: 500; color: #fff; text-decoration: none; }
+  .nav-link:hover { color: #00bcd4; }
 
-    /* Why Choose Section */
-    .why-choose {
-      padding: 4rem 2rem;
-      text-align: center;
-      background: #111;
-    }
-    .why-choose .section-title {
-      font-size: 2rem;
-      color: #00bcd4;
-    }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .feature-card {
-      background: #0d0d0d;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
-      font-size: 1rem;
-      line-height: 1.4;
-    }
-    .feature-card strong {
-      color: #00bcd4;
-      display: block;
-      margin-top: 0.5rem;
-    }
+  /* Hero */
+  .hero {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+    min-height: 50vh;
+    background: #0d0d0d;
+    overflow: hidden;
+    flex-wrap: wrap;
+  }
+  .hero-content { max-width: 500px; margin-right: 2rem; z-index: 2; }
+  .hero-title { font-size: 2.5rem; margin-bottom: 1rem; }
+  .hero-subtitle { font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem; color: #ccc; }
+  .btn { padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: bold; margin-right: 1rem; display: inline-block; text-decoration: none; }
+  .btn-primary { background: #00bcd4; color: #000; }
+  .btn-primary:hover { background: #1de9b6; }
+  .btn-secondary { background: transparent; border: 2px solid #00bcd4; color: #00bcd4; }
+  .btn-secondary:hover { background: #00bcd4; color: #000; }
 
-    /* Code Box */
-    .code-preview {
-      display: flex;
-      justify-content: center;
-      padding: 2rem;
-      background: #0d0d0d;
-    }
-    .code-box {
-      background: #111;
-      padding: 1.5rem;
-      border-radius: 10px;
-      font-family: monospace;
-      font-size: 0.95rem;
-      color: #f0f0f0;
-      text-align: left;
-      width: 100%;
-      max-width: 600px;
-      overflow-x: auto;
-      box-shadow: 0 0 15px rgba(0, 188, 212, 0.4);
-    }
-    .code-box .tag { color: #00bcd4; }
-    .code-box .text { color: #ccc; }
+  /* Cube */
+  .cube-container { width: 200px; height: 200px; perspective: 1000px; margin-left: 2rem; z-index: 2; }
+  .cube { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; animation: rotate 12s infinite linear; }
+  .cube-face { position: absolute; width: 200px; height: 200px; background: rgba(0,188,212,0.15); border: 2px solid #00bcd4; }
+  .front  { transform: translateZ(100px); }
+  .back   { transform: rotateY(180deg) translateZ(100px); }
+  .right  { transform: rotateY(90deg) translateZ(100px); }
+  .left   { transform: rotateY(-90deg) translateZ(100px); }
+  .top    { transform: rotateX(90deg) translateZ(100px); }
+  .bottom { transform: rotateX(-90deg) translateZ(100px); }
+  @keyframes rotate { from { transform: rotateX(0deg) rotateY(0deg); } to { transform: rotateX(360deg) rotateY(360deg); } }
 
-    /* Hero */
-    .hero {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 4rem 2rem;
-      min-height: 50vh;
-      background: #0d0d0d;
-      overflow: hidden;
-      flex-wrap: wrap;
-    }
-    .hero-content { max-width: 500px; margin-right: 2rem; z-index: 2; }
-    .hero-title { font-size: 2.5rem; margin-bottom: 1rem; }
-    .hero-subtitle { font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem; color: #ccc; }
-    .btn {
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
-      font-weight: bold;
-      margin-right: 1rem;
-      display: inline-block;
-      text-decoration: none;
-    }
-    .btn-primary { background: #00bcd4; color: #000; }
-    .btn-primary:hover { background: #1de9b6; }
-    .btn-secondary { background: transparent; border: 2px solid #00bcd4; color: #00bcd4; }
-    .btn-secondary:hover { background: #00bcd4; color: #000; }
+  /* Particle background */
+  #bgCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
 
-    /* Cube */
-    .cube-container { width: 200px; height: 200px; perspective: 1000px; margin-left: 2rem; z-index: 2; }
-    .cube {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      animation: rotate 12s infinite linear;
-    }
-    .cube-face {
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      background: rgba(0,188,212,0.15);
-      border: 2px solid #00bcd4;
-    }
-    .front  { transform: translateZ(100px); }
-    .back   { transform: rotateY(180deg) translateZ(100px); }
-    .right  { transform: rotateY(90deg) translateZ(100px); }
-    .left   { transform: rotateY(-90deg) translateZ(100px); }
-    .top    { transform: rotateX(90deg) translateZ(100px); }
-    .bottom { transform: rotateX(-90deg) translateZ(100px); }
-    @keyframes rotate { from { transform: rotateX(0deg) rotateY(0deg); } to { transform: rotateX(360deg) rotateY(360deg); } }
+  /* Services */
+  .services-preview { padding: 4rem 2rem; text-align: center; position: relative; z-index: 2; }
+  .section-title { font-size: 2rem; margin-bottom: 0.5rem; color: #00bcd4; }
+  .section-subtitle { color: #aaa; margin-bottom: 3rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+  .service-card { background: #111; padding: 2rem; border-radius: 12px; transition: transform 0.3s; }
+  .service-card:hover { transform: translateY(-8px); }
+  .service-icon { font-size: 2rem; margin-bottom: 1rem; color: #00bcd4; }
+  .service-link { color: #00bcd4; text-decoration: none; font-weight: 500; }
+  .service-link:hover { text-decoration: underline; }
 
-    /* Particle background */
-    #bgCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+  /* Why Choose Section */
+  .why-choose { padding: 4rem 2rem; text-align: center; background: #111; }
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+  .feature-card { background: #0d0d0d; padding: 1.5rem; border-radius: 12px; font-size: 1rem; line-height: 1.4; }
+  .feature-card strong { color: #00bcd4; display: block; margin-top: 0.5rem; }
 
-    /* Services */
-    .services-preview { padding: 4rem 2rem; text-align: center; position: relative; z-index: 2; }
-    .section-title { font-size: 2rem; margin-bottom: 0.5rem; color: #00bcd4; }
-    .section-subtitle { color: #aaa; margin-bottom: 3rem; }
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-    .service-card { background: #111; padding: 2rem; border-radius: 12px; transition: transform 0.3s; }
-    .service-card:hover { transform: translateY(-8px); }
-    .service-icon { font-size: 2rem; margin-bottom: 1rem; color: #00bcd4; }
+  /* Code Box */
+  .code-preview { display: flex; justify-content: center; padding: 2rem; background: #0d0d0d; }
+  .code-box { background: #111; padding: 1.5rem; border-radius: 10px; font-family: monospace; font-size: 0.95rem; color: #f0f0f0; text-align: left; width: 100%; max-width: 600px; overflow-x: auto; position: relative; }
+  .code-box::after { content: '|'; animation: blink 1s infinite; position: absolute; right: 1.5rem; bottom: 1.5rem; }
+  @keyframes blink { 0%,50%,100%{opacity:1;}25%,75%{opacity:0;} }
 
-    /* Only service links blue */
-    .service-link {
-      color: #00bcd4;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .service-link:hover { text-decoration: underline; }
+  /* Footer */
+  .footer { background: #111; padding: 3rem 2rem; text-align: center; }
+  .footer-logo { width: 50px; margin-bottom: 1rem; }
+  .footer-slogan { color: #ccc; margin-bottom: 1rem; }
+  .social-media { display: flex; gap: 1rem; justify-content: center; }
+  .footer-bottom { margin-top: 2rem; text-align: center; font-size: 0.9rem; color: #666; }
 
-    /* Footer */
-    .footer { background: #111; padding: 3rem 2rem; text-align: center; }
-    .footer-logo { width: 50px; margin-bottom: 1rem; }
-    .footer-slogan { color: #ccc; margin-bottom: 1rem; }
-    .social-media { display: flex; gap: 1rem; justify-content: center; }
-    .footer-bottom { margin-top: 2rem; text-align: center; font-size: 0.9rem; color: #666; }
-
-    @media (max-width: 768px) {
-      .hero { flex-direction: column; }
-      .cube-container { margin: 2rem 0 0 0; }
-      .hero-content { margin-right: 0; }
-    }
-  </style>
+  @media (max-width:768px){ .hero{ flex-direction: column; } .cube-container{ margin:2rem 0 0 0; } .hero-content{ margin-right:0; } }
+</style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="nav-logo">
-        <img src="logo.png" alt="534 Labs Logo" class="logo">
-        <span class="company-name">534 Labs</span>
-      </div>
-      <ul class="nav-menu">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="services.html" class="nav-link">Services</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
-        <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
-        <li><a href="contact.html" class="nav-link">Contact</a></li>
-      </ul>
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <img src="logo.png" alt="534 Labs Logo" class="logo">
+      <span class="company-name">534 Labs</span>
     </div>
-  </nav>
+    <ul class="nav-menu">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="services.html" class="nav-link">Services</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
-  <!-- Why Choose 534 Labs -->
-  <section class="why-choose">
-    <h2 class="section-title">Why Choose 534 Labs?</h2>
-    <div class="features-grid">
-      <div class="feature-card">⚡ <strong>Fast Delivery</strong><br>
-        <span>Quick turnaround times without compromising on quality</span>
-      </div>
-      <div class="feature-card">🛡️ <strong>Secure & Reliable</strong><br>
-        <span>Built with security best practices</span>
-      </div>
-      <div class="feature-card">💬 <strong>24/7 Support</strong><br>
-        <span>Always available to help with questions and issues</span>
-      </div>
-      <div class="feature-card">🎨 <strong>Custom Design</strong><br>
-        <span>Tailored solutions that match your brand and requirements</span>
-      </div>
+<!-- Hero -->
+<section class="hero">
+  <canvas id="bgCanvas"></canvas>
+  <div class="hero-content">
+    <h1 class="hero-title">Your Server, Our Technology</h1>
+    <p class="hero-subtitle">We specialize in creating cutting-edge websites, Discord bots, and custom web solutions that bring your digital vision to life.</p>
+    <a href="services.html" class="btn btn-primary">Our Services</a>
+    <a href="contact.html" class="btn btn-secondary">Get Started</a>
+  </div>
+  <div class="cube-container">
+    <div class="cube">
+      <div class="cube-face front"></div>
+      <div class="cube-face back"></div>
+      <div class="cube-face right"></div>
+      <div class="cube-face left"></div>
+      <div class="cube-face top"></div>
+      <div class="cube-face bottom"></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Code Preview Box -->
-  <section class="code-preview">
-    <div class="code-box">
-<pre>
-<span class="tag">&lt;html&gt;</span>
-  <span class="tag">&lt;body&gt;</span>
-    <span class="tag">&lt;h1&gt;</span><span class="text">Welcome to 534 Labs</span><span class="tag">&lt;/h1&gt;</span>
-    <span class="tag">&lt;p&gt;</span><span class="text">Your server, our technology 🚀</span><span class="tag">&lt;/p&gt;</span>
-  <span class="tag">&lt;/body&gt;</span>
-<span class="tag">&lt;/html&gt;</span>
-</pre>
+<!-- Services -->
+<section class="services-preview">
+  <h2 class="section-title">What We Do</h2>
+  <p class="section-subtitle">Professional digital solutions for the modern gaming world</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-globe"></i></div>
+      <h3>Websites</h3>
+      <p>Professional websites for your brand or community.</p>
+      <a href="services.html#web" class="service-link">Learn More →</a>
     </div>
-  </section>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <canvas id="bgCanvas"></canvas>
-    <div class="hero-content">
-      <h1 class="hero-title">Your Server, Our Technology</h1>
-      <p class="hero-subtitle">We specialize in creating cutting-edge websites, Discord bots, and custom web solutions that bring your digital vision to life.</p>
-      <a href="services.html" class="btn btn-primary">Our Services</a>
-      <a href="contact.html" class="btn btn-secondary">Get Started</a>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-code"></i></div>
+      <h3>Web Development</h3>
+      <p>Modern applications built with cutting-edge technologies.</p>
+      <a href="services.html#dev" class="service-link">Learn More →</a>
     </div>
-    <div class="cube-container">
-      <div class="cube">
-        <div class="cube-face front"></div>
-        <div class="cube-face back"></div>
-        <div class="cube-face right"></div>
-        <div class="cube-face left"></div>
-        <div class="cube-face top"></div>
-        <div class="cube-face bottom"></div>
-      </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fab fa-discord"></i></div>
+      <h3>Discord Bots</h3>
+      <p>Custom bots with moderation, automation, and entertainment features.</p>
+      <a href="services.html#discord" class="service-link">Learn More →</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Services -->
-  <section class="services-preview">
-    <h2 class="section-title">What We Do</h2>
-    <p class="section-subtitle">Professional digital solutions for the modern gaming world</p>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-globe"></i></div>
-        <h3>Websites</h3>
-        <p>Professional websites for your brand or community.</p>
-        <a href="services.html#web" class="service-link">Learn More →</a>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-code"></i></div>
-        <h3>Web Development</h3>
-        <p>Modern applications built with cutting-edge technologies.</p>
-        <a href="services.html#dev" class="service-link">Learn More →</a>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fab fa-discord"></i></div>
-        <h3>Discord Bots</h3>
-        <p>Custom bots with moderation, automation, and entertainment features.</p>
-        <a href="services.html#discord" class="service-link">Learn More →</a>
-      </div>
+<!-- Why Choose -->
+<section class="why-choose">
+  <h2 class="section-title">Why Choose 534 Labs?</h2>
+  <div class="features-grid">
+    <div class="feature-card">⚡ <strong>Fast Delivery</strong><br><span>Quick turnaround times without compromising on quality</span></div>
+    <div class="feature-card">🛡️ <strong>Secure & Reliable</strong><br><span>Built with security best practices</span></div>
+    <div class="feature-card">💬 <strong>24/7 Support</strong><br><span>Always available to help with questions and issues</span></div>
+    <div class="feature-card">🎨 <strong>Custom Design</strong><br><span>Tailored solutions that match your brand and requirements</span></div>
+  </div>
+</section>
+
+<!-- Code Box -->
+<section class="code-preview">
+  <div class="code-box"><pre id="code-output"></pre></div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <img src="logo.png" alt="534 Labs Logo" class="footer-logo">
+    <p class="footer-slogan">Your Server, Our Technology</p>
+    <div class="social-media">
+      <a href="https://discord.gg/534labs" class="social-link" title="Discord"><i class="fab fa-discord"></i></a>
+      <a href="mailto:contact@534labs.com" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
     </div>
-  </section>
+  </div>
+  <div class="footer-bottom">&copy; 2025 534 Labs. All rights reserved.</div>
+</footer>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-      <img src="logo.png" alt="534 Labs Logo" class="footer-logo">
-      <p class="footer-slogan">Your Server, Our Technology</p>
-      <div class="social-media">
-        <a href="https://discord.gg/534labs" class="social-link" title="Discord">
-          <i class="fab fa-discord"></i>
-        </a>
-        <a href="mailto:contact@534labs.com" class="social-link" title="Email">
-          <i class="fas fa-envelope"></i>
-        </a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 534 Labs. All rights reserved.</p>
-    </div>
-  </footer>
+<script>
+// Particle background
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+const numParticles = 120;
 
-  <!-- Particle Script -->
-  <script>
-    const canvas = document.getElementById('bgCanvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    const numParticles = 120;
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+for (let i = 0; i < numParticles; i++) {
+  particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random()-0.5)*0.8, vy: (Math.random()-0.5)*0.8 });
+}
 
-    for (let i = 0; i < numParticles; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.8,
-        vy: (Math.random() - 0.5) * 0.8
-      });
-    }
+function draw() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let i=0;i<particles.length;i++){
+    let p=particles[i];
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x<0||p.x>canvas.width)p.vx*=-1;
+    if(p.y<0||p.y>canvas.height)p.vy*=-1;
 
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < particles.length; i++) {
-        let p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,2,0,Math.PI*2);
+    ctx.fillStyle='#00bcd4';
+    ctx.fill();
 
+    for(let j=i+1;j<particles.length;j++){
+      let q=particles[j];
+      let dx=p.x-q.x; let dy=p.y-q.y;
+      let dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<120){
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = '#00bcd4';
-        ctx.fill();
-
-        for (let j = i + 1; j < particles.length; j++) {
-          let q = particles[j];
-          let dx = p.x - q.x;
-          let dy = p.y - q.y;
-          let dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(q.x, q.y);
-            ctx.strokeStyle = 'rgba(0,188,212,' + (1 - dist / 120) + ')';
-            ctx.stroke();
-          }
-        }
+        ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y);
+        ctx.strokeStyle='rgba(0,188,212,'+(1-dist/120)+')';
+        ctx.stroke();
       }
-      requestAnimationFrame(draw);
     }
-    draw();
-  </script>
+  }
+  requestAnimationFrame(draw);
+}
+draw();
 
+// Code typing effect
+const codeOutput=document.getElementById("code-output");
+const messages=[
+  "<html>\n  <body>\n    <h1>Welcome to 534 Labs</h1>\n    <p>Your server, our technology 🚀</p>\n  </body>\n</html>",
+  "<html>\n  <body>\n    <h1>Fast & Reliable</h1>\n    <p>Professional web solutions in record time ⚡</p>\n  </body>\n</html>",
+  "<html>\n  <body>\n    <h1>Custom Design</h1>\n    <p>Tailored solutions for your brand 🎨</p>\n  </body>\n</html>"
+];
+let msgIndex=0, charIndex=0, typingSpeed=30;
+function typeMessage(){
+  if(charIndex<messages[msgIndex].length){
+    codeOutput.textContent+=messages[msgIndex][charIndex++];
+    setTimeout(typeMessage,typingSpeed);
+  }else{
+    setTimeout(()=>{
+      codeOutput.textContent='';
+      charIndex=0;
+      msgIndex=(msgIndex+1)%messages.length;
+      typeMessage();
+    },2000);
+  }
+}
+typeMessage();
+</script>
 </body>
 </html>
+
 
