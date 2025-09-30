@@ -2466,6 +2466,59 @@ section:nth-child(odd) {
   text-decoration: underline;
 }
 
+/* Why Choose section */
+.why-choose {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: #111;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.feature-card {
+  background: #0d0d0d;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.feature-card strong {
+  color: #00bcd4;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/* Code box */
+.code-preview {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  background: #0d0d0d;
+}
+.code-box {
+  background: #111;
+  padding: 1.5rem;
+  border-radius: 10px;
+  font-family: monospace;
+  font-size: 0.95rem;
+  color: #f0f0f0;
+  text-align: left;
+  width: 100%;
+  max-width: 600px;
+  overflow-x: auto;
+  box-shadow: 0 0 15px rgba(0, 188, 212, 0.4);
+}
+.code-box .tag {
+  color: #00bcd4;
+}
+.code-box .text {
+  color: #ccc;
+}
+
 
 
 
