@@ -2452,4 +2452,20 @@ section:nth-child(odd) {
   transition: width 1s ease-in-out;
 }
 
+a {
+  color: #007BFF;
+  text-decoration: none; /* Optional: removes underline */
+}
+
+/* Optional: change color on hover */
+a:hover {
+  color: #0056b3; /* A darker shade for hover effect */
+  text-decoration: underline; /* Optional: underline on hover */
+}
+
+/* Optional: active/focus states */
+a:active, a:focus {
+  color: #004085; /* Even darker shade for active/focus */
+  outline: none;  /* Optional: removes default focus outline */
+}
 
