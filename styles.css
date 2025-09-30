@@ -2452,21 +2452,21 @@ section:nth-child(odd) {
   transition: width 1s ease-in-out;
 }
 
-a {
-  color: #007BFF;
-  text-decoration: none; /* Optional: removes underline */
+.service-link {
+  color: #007BFF;        /* Your brand blue */
+  text-decoration: none; /* Remove underline if you want */
+  font-weight: 500;      /* Optional styling */
+  transition: color 0.3s; /* Smooth hover transition */
 }
 
-/* Optional: change color on hover */
-a:hover {
-  color: #0056b3; /* A darker shade for hover effect */
-  text-decoration: underline; /* Optional: underline on hover */
+.service-link:hover {
+  color: #0056b3; /* Darker blue on hover */
+  text-decoration: underline; /* Optional */
 }
 
-/* Optional: active/focus states */
-a:active, a:focus {
-  color: #004085; /* Even darker shade for active/focus */
-  outline: none;  /* Optional: removes default focus outline */
+.service-link:visited {
+  color: #007BFF; /* Keep visited links same as normal */
 }
+
 
 
