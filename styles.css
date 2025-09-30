@@ -2460,15 +2460,6 @@ section:nth-child(odd) {
   text-decoration: underline;
 }
 
-a {
-    color: #007BFF; /* standard blue */
-    text-decoration: none; /* optional, remove underline */
-}
-
-a:hover {
-    color: #0056b3; /* darker blue on hover */
-}
-
 
 
 
