@@ -1,321 +1,970 @@
-<!--
-$$$$$$$\   $$$$$$\  $$\   $$\ 
-$$  ____| $$ ___$$\ $$ |  $$ |
-$$ |      \_/   $$ |$$ |  $$ |
-$$$$$$$\    $$$$$ / $$$$$$$$ |
-\_____$$\   \___$$\ \_____$$ |
-$$\   $$ |$$\   $$ |      $$ |
-\$$$$$$  |\$$$$$$  |      $$ |
- \______/  \______/       \__|                         
-
-© 2025 534 Labs
-
-Notice: All information contained herein is, and remains,
-the property of 534 Labs. The intellectual and technical concepts
-contained herein are proprietary to 534 Labs and are protected by
-all applicable intellectual property laws, including trade secret
-and copyright laws.
-Unauthorised dissemination, distribution, or reproduction of this
-material is strictly prohibited unless prior written permission
-is obtained from 534 Labs.
--->
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>534 Labs - Your Server, Our Technology</title>
-<meta name="description" content="534 Labs specializes in creating websites, Discord bots, and custom web solutions.">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="icon" href="logo.png" type="image/png">
-<style>
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #0d0d0d;
-    color: #f0f0f0;
-    overflow-x: hidden;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  /* Navbar */
-  .navbar { background: #111; padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; }
-  .nav-container { display: flex; justify-content: space-between; align-items: center; }
-  .logo { width: 40px; margin-right: 10px; }
-  .company-name { font-size: 1.5rem; font-weight: bold; }
-  .nav-menu { list-style: none; display: flex; gap: 1.5rem; margin: 0; padding: 0; }
-  .nav-link { font-weight: 500; color: #fff; text-decoration: none; }
-  .nav-link:hover { color: #00bcd4; }
+    <title>Your Brand — Websites Built For You</title>
+    <meta name="description" content="Order a custom website and track its development from start to finish.">
 
-  /* Hero */
-  .hero {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 4rem 2rem;
-    min-height: 50vh;
-    background: #0d0d0d;
-    overflow: hidden;
-    flex-wrap: wrap;
-  }
-  .hero-content { max-width: 500px; margin-right: 2rem; z-index: 2; }
-  .hero-title { font-size: 2.5rem; margin-bottom: 1rem; }
-  .hero-subtitle { font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem; color: #ccc; }
-  .btn { padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: bold; margin-right: 1rem; display: inline-block; text-decoration: none; }
-  .btn-primary { background: #00bcd4; color: #000; }
-  .btn-primary:hover { background: #1de9b6; }
-  .btn-secondary { background: transparent; border: 2px solid #00bcd4; color: #00bcd4; }
-  .btn-secondary:hover { background: #00bcd4; color: #000; }
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  /* Cube */
-  .cube-container { width: 200px; height: 200px; perspective: 1000px; margin-left: 2rem; z-index: 2; }
-  .cube { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; animation: rotate 12s infinite linear; }
-  .cube-face { position: absolute; width: 200px; height: 200px; background: rgba(0,188,212,0.15); border: 2px solid #00bcd4; }
-  .front  { transform: translateZ(100px); }
-  .back   { transform: rotateY(180deg) translateZ(100px); }
-  .right  { transform: rotateY(90deg) translateZ(100px); }
-  .left   { transform: rotateY(-90deg) translateZ(100px); }
-  .top    { transform: rotateX(90deg) translateZ(100px); }
-  .bottom { transform: rotateX(-90deg) translateZ(100px); }
-  @keyframes rotate { from { transform: rotateX(0deg) rotateY(0deg); } to { transform: rotateX(360deg) rotateY(360deg); } }
-
-  /* Particle background */
-  #bgCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-
-  /* Services */
-  .services-preview { padding: 4rem 2rem; text-align: center; position: relative; z-index: 2; }
-  .section-title { font-size: 2rem; margin-bottom: 0.5rem; color: #00bcd4; }
-  .section-subtitle { color: #aaa; margin-bottom: 3rem; }
-  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-  .service-card { background: #111; padding: 2rem; border-radius: 12px; transition: transform 0.3s; text-align: center; }
-  .service-card:hover { transform: translateY(-8px); }
-  .service-icon { font-size: 2rem; margin-bottom: 1rem; color: #00bcd4; }
-  .service-link { color: #00bcd4; text-decoration: none; font-weight: 500; }
-  .service-link:hover { text-decoration: underline; }
-
-  /* Why Choose Section as cards like services */
-  .why-choose { padding: 4rem 2rem; text-align: center; }
-  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
-  .why-card { background: #111; padding: 2rem; border-radius: 12px; transition: transform 0.3s; text-align: center; }
-  .why-card:hover { transform: translateY(-8px); }
-  .why-icon { font-size: 2rem; margin-bottom: 1rem; color: #00bcd4; }
-  .why-title { font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem; }
-  .why-desc { color: #ccc; line-height: 1.5; }
-
-  /* Code Box */
-  .code-preview { display: flex; justify-content: center; padding: 2rem; background: #0d0d0d; }
-  .code-box { background: #111; padding: 1.5rem; border-radius: 10px; font-family: monospace; font-size: 0.95rem; color: #f0f0f0; text-align: left; width: 100%; max-width: 600px; height: 250px; overflow-y: auto; position: relative; }
-  .code-box::after { content: '|'; animation: blink 1s infinite; position: absolute; right: 1.5rem; bottom: 1.5rem; }
-  @keyframes blink { 0%,50%,100%{opacity:1;}25%,75%{opacity:0;} }
-
-  /* Footer */
-  .footer { background: #111; padding: 3rem 2rem; text-align: center; }
-  .footer-logo { width: 50px; margin-bottom: 1rem; }
-  .footer-slogan { color: #ccc; margin-bottom: 1rem; }
-  .social-media { display: flex; gap: 1rem; justify-content: center; }
-  .footer-bottom { margin-top: 2rem; text-align: center; font-size: 0.9rem; color: #666; }
-
-  @media (max-width:768px){ 
-    .hero{ flex-direction: column; } 
-    .cube-container{ margin:2rem 0 0 0; } 
-    .hero-content{ margin-right:0; } 
-  }
-</style>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- Navbar -->
-<nav class="navbar">
-  <div class="nav-container">
-    <div class="nav-logo">
-      <img src="logo.png" alt="534 Labs Logo" class="logo">
-      <span class="company-name">534 Labs</span>
-    </div>
-    <ul class="nav-menu">
-      <li><a href="index.html" class="nav-link">Home</a></li>
-      <li><a href="services.html" class="nav-link">Services</a></li>
-      <li><a href="about.html" class="nav-link">About</a></li>
-      <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
-      <li><a href="contact.html" class="nav-link">Contact</a></li>
-    </ul>
-  </div>
-</nav>
+    <!-- =========================
+         APP
+    ========================== -->
 
-<!-- Hero -->
-<section class="hero">
-  <canvas id="bgCanvas"></canvas>
-  <div class="hero-content">
-    <h1 class="hero-title">Your Server, Our Technology</h1>
-    <p class="hero-subtitle">We specialize in creating cutting-edge websites, Discord bots, and custom web solutions that bring your digital vision to life.</p>
-    <a href="services.html" class="btn btn-primary">Our Services</a>
-    <a href="contact.html" class="btn btn-secondary">Get Started</a>
-  </div>
-  <div class="cube-container">
-    <div class="cube">
-      <div class="cube-face front"></div>
-      <div class="cube-face back"></div>
-      <div class="cube-face right"></div>
-      <div class="cube-face left"></div>
-      <div class="cube-face top"></div>
-      <div class="cube-face bottom"></div>
-    </div>
-  </div>
-</section>
+    <div id="app">
 
-<!-- Services -->
-<section class="services-preview">
-  <h2 class="section-title">What We Do</h2>
-  <p class="section-subtitle">Professional digital solutions for the modern gaming world</p>
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="service-icon"><i class="fas fa-globe"></i></div>
-      <h3>Websites</h3>
-      <p>Professional websites for your brand or community.</p>
-      <a href="services.html#web" class="service-link">Learn More →</a>
-    </div>
-    <div class="service-card">
-      <div class="service-icon"><i class="fas fa-code"></i></div>
-      <h3>Web Development</h3>
-      <p>Modern applications built with cutting-edge technologies.</p>
-      <a href="services.html#dev" class="service-link">Learn More →</a>
-    </div>
-    <div class="service-card">
-      <div class="service-icon"><i class="fab fa-discord"></i></div>
-      <h3>Discord Bots</h3>
-      <p>Custom bots with moderation, automation, and entertainment features.</p>
-      <a href="services.html#discord" class="service-link">Learn More →</a>
-    </div>
-  </div>
-</section>
+        <!-- =========================
+             TOP BAR
+        ========================== -->
 
-<!-- Why Choose -->
-<section class="why-choose">
-  <h2 class="section-title">Why Choose 534 Labs?</h2>
-  <div class="why-grid">
-    <div class="why-card">
-      <div class="why-icon"><i class="fas fa-bolt"></i></div>
-      <div class="why-title">Fast Delivery</div>
-      <div class="why-desc">Quick turnaround times without compromising on quality.</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
-      <div class="why-title">Secure & Reliable</div>
-      <div class="why-desc">Built with security best practices to keep your data safe.</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon"><i class="fas fa-headset"></i></div>
-      <div class="why-title">24/7 Support</div>
-      <div class="why-desc">Always available to help with questions and issues.</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon"><i class="fas fa-paint-brush"></i></div>
-      <div class="why-title">Custom Design</div>
-      <div class="why-desc">Tailored solutions that match your brand and requirements.</div>
-    </div>
-  </div>
-</section>
+        <header class="top-bar">
 
-<!-- Code Box -->
-<section class="code-preview">
-  <div class="code-box"><pre id="code-output"></pre></div>
-</section>
-
-<!-- Footer -->
-<footer class="footer" style="background:#111; color:#ccc; padding:2rem 1rem;">
-    <div class="container" style="max-width:1200px; margin:0 auto;">
-        <div class="footer-content" style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem;">
-            
-            <!-- Brand Section -->
-            <div class="footer-brand" style="flex:1; min-width:200px; text-align:center;">
-                <img src="logo.png" alt="534 Labs Logo" class="footer-logo" style="width:60px; margin-bottom:1rem;">
-                <p class="footer-slogan">Your Server, Our Technology</p>
-                <div class="social-media" style="display:flex; justify-content:center; gap:1rem; margin-top:0.5rem;">
-                    <a href="https://discord.gg/B3zhPet6Yx" class="social-link" title="Discord" style="color:#007BFF;">
-                        <i class="fab fa-discord"></i>
-                    </a>
-                    <a href="mailto:contact@534labs.com" class="social-link" title="Email" style="color:#007BFF;">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
+            <div class="brand">
+                <img src="logo.png" alt="Your Brand Logo">
             </div>
 
-            <!-- Links Section -->
-            <div class="footer-links" style="flex:2; display:flex; justify-content:space-around; min-width:300px; flex-wrap:wrap; gap:2rem;">
-                
-                <!-- Services -->
-                <div class="footer-section" style="flex:1; min-width:140px;">
-                    <h4 style="color:#007BFF; margin-bottom:1rem; border-bottom:2px solid #007BFF; padding-bottom:0.25rem;">Services</h4>
-                    <ul style="list-style:none; padding:0; margin-top:1rem;">
-                        <li><a href="services.html#erlc" style="color:#ccc; text-decoration:none;">Websites</a></li>
-                        <li><a href="services.html#web" style="color:#ccc; text-decoration:none;">Web Development</a></li>
-                        <li><a href="services.html#discord" style="color:#ccc; text-decoration:none;">Discord Bots</a></li>
-                    </ul>
+            <button class="notification-btn" aria-label="Notifications">
+                <i class="fa-regular fa-bell"></i>
+                <span class="notification-dot"></span>
+            </button>
+
+        </header>
+
+
+        <!-- =========================
+             PAGE CONTENT
+        ========================== -->
+
+        <main id="page-content">
+
+
+            <!-- =========================
+                 HOME
+            ========================== -->
+
+            <section id="home-page" class="page active">
+
+                <div class="home-header">
+                    <p class="small-text">Welcome back</p>
+                    <h1>Hello 👋</h1>
                 </div>
 
-                <!-- Company -->
-                <div class="footer-section" style="flex:1; min-width:140px;">
-                    <h4 style="color:#007BFF; margin-bottom:1rem; border-bottom:2px solid #007BFF; padding-bottom:0.25rem;">Company</h4>
-                    <ul style="list-style:none; padding:0; margin-top:1rem;">
-                        <li><a href="about.html" style="color:#ccc; text-decoration:none;">About Us</a></li>
-                        <li><a href="portfolio.html" style="color:#ccc; text-decoration:none;">Portfolio</a></li>
-                        <li><a href="contact.html" style="color:#ccc; text-decoration:none;">Contact</a></li>
-                        <li><a href="index.html" style="color:#ccc; text-decoration:none;">Home</a></li>
-                    </ul>
+                <div class="hero-card">
+
+                    <div class="hero-content">
+                        <span class="hero-label">BUILD YOUR WEBSITE</span>
+
+                        <h2>
+                            Your website.
+                            <br>
+                            Built by us.
+                        </h2>
+
+                        <p>
+                            Choose a service, place your order,
+                            and we'll take care of the rest.
+                        </p>
+
+                        <button class="primary-btn" onclick="showPage('shop')">
+                            Explore Services
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
                 </div>
 
-            </div>
-        </div>
 
-        <!-- Privacy & Terms line (separate from links) -->
-        <div style="text-align:center; margin-top:2rem; font-size:0.85rem; color:#888;">
-            <a href="privacy.html" style="color:#888; text-decoration:none; margin-right:1rem;">Privacy Policy</a> | 
-            <a href="terms.html" style="color:#888; text-decoration:none; margin-left:1rem;">Terms of Service</a>
-        </div>
+                <!-- Recent Order -->
 
-        <!-- Footer Bottom -->
-        <div style="margin-top:0.5rem; text-align:center; font-size:0.9rem; color:#666;">
-            &copy; 2025 534 Labs. All rights reserved.
-        </div>
+                <div class="section-header">
+                    <h3>Latest Order</h3>
+                    <button onclick="showPage('orders')">View all</button>
+                </div>
+
+                <div class="order-card">
+
+                    <div class="order-card-top">
+
+                        <div>
+                            <span class="order-number">ORDER #1042</span>
+                            <h3>Business Website</h3>
+                        </div>
+
+                        <span class="status-badge development">
+                            Development
+                        </span>
+
+                    </div>
+
+                    <div class="order-date">
+                        Last updated · 7 Sep 2026 · 6:21 PM
+                    </div>
+
+                    <button class="secondary-btn" onclick="openOrder('1042')">
+                        Track Order
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                </div>
+
+
+                <!-- Quick Shop -->
+
+                <div class="section-header">
+                    <h3>Popular Services</h3>
+                    <button onclick="showPage('shop')">See all</button>
+                </div>
+
+                <div class="horizontal-products">
+
+                    <div class="mini-product">
+
+                        <div class="product-icon">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+
+                        <h4>Business Website</h4>
+                        <p>From $299</p>
+
+                    </div>
+
+
+                    <div class="mini-product">
+
+                        <div class="product-icon">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+
+                        <h4>Online Store</h4>
+                        <p>From $499</p>
+
+                    </div>
+
+
+                    <div class="mini-product">
+
+                        <div class="product-icon">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+
+                        <h4>Custom Website</h4>
+                        <p>From $399</p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 SHOP
+            ========================== -->
+
+            <section id="shop-page" class="page">
+
+                <div class="page-header">
+                    <h1>Shop</h1>
+                    <p>Choose what you need for your website.</p>
+                </div>
+
+
+                <!-- Categories -->
+
+                <div class="categories">
+
+                    <button class="category active">
+                        All
+                    </button>
+
+                    <button class="category">
+                        Websites
+                    </button>
+
+                    <button class="category">
+                        Design
+                    </button>
+
+                    <button class="category">
+                        Add-ons
+                    </button>
+
+                </div>
+
+
+                <!-- Products -->
+
+                <div class="products">
+
+
+                    <!-- Product -->
+
+                    <article class="product-card">
+
+                        <div class="product-image website">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+
+                        <div class="product-info">
+
+                            <span class="product-category">
+                                WEBSITE
+                            </span>
+
+                            <h2>Business Website</h2>
+
+                            <p>
+                                A modern professional website
+                                designed specifically for your business.
+                            </p>
+
+                            <div class="product-bottom">
+
+                                <div>
+                                    <span class="price-label">FROM</span>
+                                    <strong>$299</strong>
+                                </div>
+
+                                <button class="add-cart-btn"
+                                        onclick="addToCart('Business Website', 299)">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Product -->
+
+                    <article class="product-card">
+
+                        <div class="product-image ecommerce">
+                            <i class="fa-solid fa-store"></i>
+                        </div>
+
+                        <div class="product-info">
+
+                            <span class="product-category">
+                                WEBSITE
+                            </span>
+
+                            <h2>E-Commerce Website</h2>
+
+                            <p>
+                                Sell your products online with
+                                a complete online store.
+                            </p>
+
+                            <div class="product-bottom">
+
+                                <div>
+                                    <span class="price-label">FROM</span>
+                                    <strong>$499</strong>
+                                </div>
+
+                                <button class="add-cart-btn"
+                                        onclick="addToCart('E-Commerce Website', 499)">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Product -->
+
+                    <article class="product-card">
+
+                        <div class="product-image custom">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+
+                        <div class="product-info">
+
+                            <span class="product-category">
+                                CUSTOM
+                            </span>
+
+                            <h2>Custom Website</h2>
+
+                            <p>
+                                A completely custom website
+                                built around your exact requirements.
+                            </p>
+
+                            <div class="product-bottom">
+
+                                <div>
+                                    <span class="price-label">FROM</span>
+                                    <strong>$399</strong>
+                                </div>
+
+                                <button class="add-cart-btn"
+                                        onclick="addToCart('Custom Website', 399)">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Product -->
+
+                    <article class="product-card">
+
+                        <div class="product-image design">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </div>
+
+                        <div class="product-info">
+
+                            <span class="product-category">
+                                DESIGN
+                            </span>
+
+                            <h2>Website Redesign</h2>
+
+                            <p>
+                                Give your existing website
+                                a completely new look.
+                            </p>
+
+                            <div class="product-bottom">
+
+                                <div>
+                                    <span class="price-label">FROM</span>
+                                    <strong>$199</strong>
+                                </div>
+
+                                <button class="add-cart-btn"
+                                        onclick="addToCart('Website Redesign', 199)">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 CART
+            ========================== -->
+
+            <section id="cart-page" class="page">
+
+                <div class="page-header">
+                    <h1>Your Cart</h1>
+                    <p>Review your services before checkout.</p>
+                </div>
+
+
+                <div id="cart-items">
+
+                    <!-- Items added with JavaScript -->
+
+                    <div class="empty-cart">
+
+                        <div class="empty-icon">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+
+                        <h2>Your cart is empty</h2>
+
+                        <p>
+                            Browse our services and add something
+                            to your cart.
+                        </p>
+
+                        <button class="primary-btn"
+                                onclick="showPage('shop')">
+                            Go to Shop
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Cart total -->
+
+                <div class="cart-summary">
+
+                    <div>
+                        <span>Subtotal</span>
+                        <strong id="cart-total">$0</strong>
+                    </div>
+
+                    <div>
+                        <span>Service fee</span>
+                        <strong>$0</strong>
+                    </div>
+
+                    <hr>
+
+                    <div class="total-row">
+                        <span>Total</span>
+                        <strong id="cart-final">$0</strong>
+                    </div>
+
+                    <button class="checkout-btn">
+                        Proceed to Checkout
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 ORDERS
+            ========================== -->
+
+            <section id="orders-page" class="page">
+
+                <div class="page-header">
+
+                    <div>
+                        <h1>My Orders</h1>
+                        <p>Track your website orders.</p>
+                    </div>
+
+                </div>
+
+
+                <div id="orders-list">
+
+
+                    <!-- ORDER -->
+
+                    <article class="full-order-card"
+                             onclick="openOrder('1042')">
+
+                        <div class="order-icon">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+
+                        <div class="full-order-info">
+
+                            <div class="full-order-top">
+
+                                <span>
+                                    #1042
+                                </span>
+
+                                <span class="status-badge development">
+                                    In Development
+                                </span>
+
+                            </div>
+
+                            <h3>
+                                Business Website
+                            </h3>
+
+                            <p>
+                                Ordered 7 September 2026
+                            </p>
+
+                            <div class="view-order">
+                                View Order
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- COMPLETED ORDER -->
+
+                    <article class="full-order-card"
+                             onclick="openOrder('1038')">
+
+                        <div class="order-icon">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+
+                        <div class="full-order-info">
+
+                            <div class="full-order-top">
+
+                                <span>
+                                    #1038
+                                </span>
+
+                                <span class="status-badge completed">
+                                    Completed
+                                </span>
+
+                            </div>
+
+                            <h3>
+                                Portfolio Website
+                            </h3>
+
+                            <p>
+                                Ordered 28 August 2026
+                            </p>
+
+                            <div class="view-order">
+                                View Order
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 ORDER TRACKING
+            ========================== -->
+
+            <section id="order-page" class="page">
+
+                <button class="back-button"
+                        onclick="showPage('orders')">
+
+                    <i class="fa-solid fa-arrow-left"></i>
+                    My Orders
+
+                </button>
+
+
+                <div class="order-detail-header">
+
+                    <span class="order-number">
+                        ORDER #1042
+                    </span>
+
+                    <h1>
+                        Business Website
+                    </h1>
+
+                    <p>
+                        Ordered 7 September 2026
+                    </p>
+
+                </div>
+
+
+                <!-- Tracking -->
+
+                <div class="tracking-card">
+
+                    <div class="tracking-title">
+                        <h2>Order Status</h2>
+
+                        <span class="status-badge development">
+                            In Development
+                        </span>
+                    </div>
+
+
+                    <div class="timeline">
+
+
+                        <!-- STEP -->
+
+                        <div class="timeline-item completed">
+
+                            <div class="timeline-dot">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+
+                            <div class="timeline-content">
+
+                                <h3>
+                                    Order placed
+                                </h3>
+
+                                <span>
+                                    7 September 2026 · 2:14 PM
+                                </span>
+
+                                <p>
+                                    Your order has been successfully received.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- STEP -->
+
+                        <div class="timeline-item completed">
+
+                            <div class="timeline-dot">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+
+                            <div class="timeline-content">
+
+                                <h3>
+                                    Payment confirmed
+                                </h3>
+
+                                <span>
+                                    7 September 2026 · 2:16 PM
+                                </span>
+
+                                <p>
+                                    Your payment has been confirmed.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- STEP -->
+
+                        <div class="timeline-item completed">
+
+                            <div class="timeline-dot">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+
+                            <div class="timeline-content">
+
+                                <h3>
+                                    Developer assigned
+                                </h3>
+
+                                <span>
+                                    7 September 2026 · 3:02 PM
+                                </span>
+
+                                <p>
+                                    Your project has been handed over
+                                    to our development team.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- CURRENT STEP -->
+
+                        <div class="timeline-item current">
+
+                            <div class="timeline-dot">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+
+                            <div class="timeline-content">
+
+                                <h3>
+                                    Website development
+                                </h3>
+
+                                <span>
+                                    7 September 2026 · 6:21 PM
+                                </span>
+
+                                <p>
+                                    Our developers are currently
+                                    building your website.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- FUTURE -->
+
+                        <div class="timeline-item">
+
+                            <div class="timeline-dot">
+                                <i class="fa-solid fa-vial"></i>
+                            </div>
+
+                            <div class="timeline-content">
+
+                                <h3>
+                                    Testing
+                                </h3>
+
+                                <span>
+                                    Not started
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="timeline-item">
+
+                            <div class="timeline-dot">
+                                <i class="fa-solid fa-eye"></i>
+                            </div>
+
+                            <div class="timeline-content">
+
+                                <h3>
+                                    Client review
+                                </h3>
+
+                                <span>
+                                    Not started
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="timeline-item">
+
+                            <div class="timeline-dot">
+                                <i class="fa-solid fa-rocket"></i>
+                            </div>
+
+                            <div class="timeline-content">
+
+                                <h3>
+                                    Completed
+                                </h3>
+
+                                <span>
+                                    Not started
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Order Information -->
+
+                <div class="information-card">
+
+                    <h2>Order Information</h2>
+
+                    <div class="info-row">
+                        <span>Order number</span>
+                        <strong>#1042</strong>
+                    </div>
+
+                    <div class="info-row">
+                        <span>Service</span>
+                        <strong>Business Website</strong>
+                    </div>
+
+                    <div class="info-row">
+                        <span>Ordered</span>
+                        <strong>7 Sep 2026</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 ACCOUNT
+            ========================== -->
+
+            <section id="account-page" class="page">
+
+                <div class="page-header">
+                    <h1>Account</h1>
+                    <p>Manage your account.</p>
+                </div>
+
+
+                <div class="profile-card">
+
+                    <div class="profile-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div>
+                        <h2>Customer</h2>
+                        <p>customer@email.com</p>
+                    </div>
+
+                </div>
+
+
+                <div class="account-options">
+
+                    <button>
+                        <span>
+                            <i class="fa-solid fa-user"></i>
+                            Personal Information
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+
+                    <button>
+                        <span>
+                            <i class="fa-solid fa-bag-shopping"></i>
+                            My Orders
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+
+                    <button>
+                        <span>
+                            <i class="fa-solid fa-gear"></i>
+                            Settings
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+
+                    <button>
+                        <span>
+                            <i class="fa-solid fa-circle-question"></i>
+                            Help & Support
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+
+                    <button class="logout-button">
+                        <span>
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            Log Out
+                        </span>
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+
+        <!-- =========================
+             BOTTOM NAVIGATION
+        ========================== -->
+
+        <nav class="bottom-nav">
+
+            <button class="nav-item active"
+                    data-page="home"
+                    onclick="showPage('home')">
+
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+
+            </button>
+
+
+            <button class="nav-item"
+                    data-page="shop"
+                    onclick="showPage('shop')">
+
+                <i class="fa-solid fa-store"></i>
+                <span>Shop</span>
+
+            </button>
+
+
+            <button class="nav-item cart-nav"
+                    data-page="cart"
+                    onclick="showPage('cart')">
+
+                <div class="cart-icon-wrapper">
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    <span id="cart-count">
+                        0
+                    </span>
+
+                </div>
+
+                <span>Cart</span>
+
+            </button>
+
+
+            <button class="nav-item"
+                    data-page="orders"
+                    onclick="showPage('orders')">
+
+                <i class="fa-solid fa-truck"></i>
+                <span>Orders</span>
+
+            </button>
+
+
+            <button class="nav-item"
+                    data-page="account"
+                    onclick="showPage('account')">
+
+                <i class="fa-solid fa-user"></i>
+                <span>Account</span>
+
+            </button>
+
+        </nav>
+
     </div>
-</footer>
 
 
-<script>
-// Particle background
-const canvas=document.getElementById('bgCanvas');
-const ctx=canvas.getContext('2d');
-let particles=[]; const numParticles=120;
-function resizeCanvas(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
-window.addEventListener('resize',resizeCanvas);
-resizeCanvas();
-for(let i=0;i<numParticles;i++){ particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5)*0.8,vy:(Math.random()-0.5)*0.8}); }
-function draw(){ ctx.clearRect(0,0,canvas.width,canvas.height); for(let i=0;i<particles.length;i++){ let p=particles[i]; p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>canvas.width)p.vx*=-1; if(p.y<0||p.y>canvas.height)p.vy*=-1; ctx.beginPath(); ctx.arc(p.x,p.y,2,0,Math.PI*2); ctx.fillStyle='#00bcd4'; ctx.fill(); for(let j=i+1;j<particles.length;j++){ let q=particles[j]; let dx=p.x-q.x; let dy=p.y-q.y; let dist=Math.sqrt(dx*dx+dy*dy); if(dist<120){ ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle='rgba(0,188,212,'+(1-dist/120)+')'; ctx.stroke(); } } } requestAnimationFrame(draw); }
-draw();
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
 
-// Typing code effect
-const codeOutput=document.getElementById("code-output");
-const messages=[
-  "<html>\n  <body>\n    <h1>Welcome to 534 Labs</h1>\n    <p>Your server, our technology 🚀</p>\n  </body>\n</html>",
-  "<html>\n  <body>\n    <h1>Fast & Reliable</h1>\n    <p>Professional web solutions in record time ⚡</p>\n  </body>\n</html>",
-  "<html>\n  <body>\n    <h1>Custom Design</h1>\n    <p>Tailored solutions for your brand 🎨</p>\n  </body>\n</html>"
-];
-let msgIndex=0,charIndex=0,typingSpeed=30;
-function typeMessage(){ 
-  if(charIndex<messages[msgIndex].length){ 
-    codeOutput.textContent+=messages[msgIndex][charIndex++]; 
-    setTimeout(typeMessage,typingSpeed); 
-  }else{ 
-    setTimeout(()=>{ codeOutput.textContent=''; charIndex=0; msgIndex=(msgIndex+1)%messages.length; typeMessage(); },2000); 
-  } 
-}
-typeMessage();
-</script>
+    <script src="script.js"></script>
 
 </body>
 </html>
+```
 
-
-
-
-
-
+This is the **front-end structure only** for now. The next file should be `style.css`, where we'll make it actually look like the dark, blue `#007BFF` / `#343A40` mobile app you described, including the fixed bottom navigation and AliExpress-style order timeline.
